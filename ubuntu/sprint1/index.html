@@ -109,19 +109,33 @@
     </article>
 
     <article class="apartat" id="apartat8">
-      
-      <h2>8. Comprovació final</h2>
-      <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero
-         tempore, cum soluta nobis est eligendi optio cumque nihil impedit.
-         Abans de donar per acabat el sprint, revisa aquest resum:</p>
-      <ul>
-        <li>El sistema arrenca sense errors.</li>
-        <li>La xarxa respon correctament als <em>pings</em>.</li>
-        <li><strong>Els usuaris i grups creats coincideixen amb l'enunciat.</strong></li>
-      </ul>
-      <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-         fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem
-         sequi nesciunt.</p>
+      <h2>8. Instal·lació d'aplicacions</h2>
+
+      <h3>Pinning de paquets amb APT</h3>
+
+      <p>Primer vaig comprovar la política d'APT del paquet <code>curl</code> amb la
+         comanda <code>apt-cache policy curl</code>. La versió instal·lada i la
+         candidata són la <code>8.5.0-2ubuntu10.15</code>, i tots els orígens tenen
+         prioritat 400.</p>
+      <img src="img/pinning1-policy-inicial.png" alt="apt-cache policy curl abans de configurar el pinning">
+
+      <p>Després vaig crear el fitxer de preferències amb la comanda
+         <code>sudo nano /etc/apt/preferences.d/curl-pin</code>. A la primera regla vaig
+         posar prioritat 400 per a tots els paquets i a la segona vaig fixar
+         <code>curl</code> a la versió <code>8.5.0-2ubuntu10.15</code> amb prioritat 1000.</p>
+      <img src="img/pinning2-fitxer-curl-pin.png" alt="Fitxer curl-pin obert amb nano">
+
+      <p>Per verificar que el pinning s'havia aplicat, vaig tornar a executar
+         <code>apt-cache policy curl</code>. Ara la versió <code>8.5.0-2ubuntu10.15</code>
+         apareix amb prioritat 1000 i la resta d'orígens es mantenen a 400, per tant la
+         regla funciona.</p>
+      <img src="img/pinning3-policy-final.png" alt="apt-cache policy curl amb prioritat 1000">
+
+      <p>Finalment vaig provar la instal·lació amb <code>sudo apt install curl</code>.
+         APT va indicar que <code>curl</code> ja estava en la versió més recent
+         (<code>8.5.0-2ubuntu10.15</code>), és a dir, que manté la versió fixada.</p>
+      <img src="img/pinning4-apt-install.png" alt="sudo apt install curl amb el pinning actiu">
+
       <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
     </article>
   </section>

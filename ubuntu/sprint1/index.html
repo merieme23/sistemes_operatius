@@ -114,30 +114,25 @@
       <h3>Pinning de paquets amb APT</h3>
 
       <p>Primer vaig comprovar la política d'APT del paquet <code>curl</code> amb la
-         comanda <code>apt-cache policy curl</code>. La versió instal·lada i la
-         candidata són la <code>8.5.0-2ubuntu10.15</code>, i tots els orígens tenen
-         prioritat 400.</p>
-      <img src="pinning1-policy-inicial.png" alt="apt-cache policy curl abans de configurar el pinning">
-
+         comanda <code>sudo apt-cache policy curl</code>. El paquet encara no estava
+         instal·lat i la versió candidata era la <code>8.5.0-2ubuntu10</code>.</p>
+      <img src="Captura%20de%20pantalla%20de%202026-10-08%2013-09-05.png" alt="apt-cache policy curl abans de fer la instal·lació">
 
       <p>Després vaig crear el fitxer de preferències amb la comanda
          <code>sudo nano /etc/apt/preferences.d/curl-pin</code>. A la primera regla vaig
          posar prioritat 400 per a tots els paquets i a la segona vaig fixar
-         <code>curl</code> a la versió <code>8.5.0-2ubuntu10.15</code> amb prioritat 1000.</p>
-      <img src="pinning2-fitxer-curl-pin.png" alt="Fitxer curl-pin obert amb nano">
+         <code>curl</code> a la versió <code>8.5.0-2ubuntu10</code> amb prioritat 1000.</p>
+      <img src="Captura%20de%20pantalla%20de%202026-10-08%2013-09-21.png" alt="Fitxer curl-pin obert amb nano">
 
-
-      <p>Per verificar que el pinning s'havia aplicat, vaig tornar a executar
-         <code>apt-cache policy curl</code>. Ara la versió <code>8.5.0-2ubuntu10.15</code>
-         apareix amb prioritat 1000 i la resta d'orígens es mantenen a 400, per tant la
-         regla funciona.</p>
-      <img src="pinning3-policy-final.png" alt="apt-cache policy curl amb prioritat 1000">
->
-
-      <p>Finalment vaig provar la instal·lació amb <code>sudo apt install curl</code>.
-         APT va indicar que <code>curl</code> ja estava en la versió més recent
-         (<code>8.5.0-2ubuntu10.15</code>), és a dir, que manté la versió fixada.</p>
-      <img src="pinning4-apt-install.png" alt="sudo apt install curl amb el pinning actiu">
+      <p>Finalment vaig provar d'instal·lar el paquet amb <code>sudo apt install curl</code>
+         i va aparèixer un error de dependències. Aquest error és normal i demostra que el
+         pinning funciona. El paquet <code>curl</code> fixat a la versió
+         <code>8.5.0-2ubuntu10</code> necessita exactament la mateixa versió de la llibreria
+         <code>libcurl4t64</code>. APT, però, intenta instal·lar la versió més nova
+         (<code>8.5.0-2ubuntu10.15</code>) d'aquesta llibreria, i les dues versions no són
+         compatibles. Per això APT no pot resoldre les dependències i mostra el missatge
+         d'error.</p>
+      <img src="Captura%20de%20pantalla%20de%202026-10-08%2013-09-30.png" alt="Error de dependències en instal·lar curl amb el pinning actiu">
 
       <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
     </article>

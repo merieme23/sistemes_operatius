@@ -41,19 +41,39 @@
       </tbody>
     </table>
 
-    <article class="apartat" id="apartat1">
-      <h2>1. Sistemes de fitxers i particions</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-         tempor incididunt ut labore et dolore magna aliqua. El gestor de
-         paquets permet <strong>instal·lar, actualitzar i eliminar</strong>
-         programari de manera controlada.</p>
-      <ul>
-        <li>Actualitzar la llista de paquets disponibles.</li>
-        <li>Instal·lar un paquet nou.</li>
-        <li>Eliminar un paquet que ja no es fa servir.</li>
-      </ul>
-      <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
-    </article>
+     <article class="apartat" id="apartat1">
+    <h2>1. Sistemes de fitxers i particions</h2>
+
+    <h3>Estructura física d'un disc</h3>
+    <h4>Què és?</h4>
+    <p>És <strong>com és el disc per dins, el maquinari de veritat</strong>. Un disc dur té plats que giren i la superfície
+       es divideix en trossos molt petits que es diuen <strong>sectors</strong>. Un SSD no té plats, però també treballa amb sectors.
+       El sector és la unitat més petita que el disc pot guardar a nivell físic. Al meu disc virtual <code>/dev/sdb</code>
+       (25 GiB), cada sector fa <strong>512 bytes</strong>.</p>
+    <figure>
+      <img src="imatge/dsk1.png" alt="fdisk mostrant /dev/sdb de 25 GiB amb sectors de 512 bytes">
+      <figcaption>El disc <code>/dev/sdb</code>: 25 GiB i sectors de 512 bytes.</figcaption>
+    </figure>
+
+    <h3>Estructura lògica d'un disc</h3>
+    <h4>Quins dos formats hi ha?</h4>
+    <p>L'estructura lògica és <strong>com es reparteix el disc</strong> en parts (particions). Per això el disc té un "mapa"
+       que diu on comença i acaba cada part. Hi ha dos tipus de mapa:</p>
+    <h5>MBR</h5>
+    <p>És el mapa <strong>antic</strong>. És senzill, però només admet <strong>4 particions principals</strong> i discs de
+       fins a uns <strong>2 TB</strong>.</p>
+    <h5>GPT</h5>
+    <p>És el mapa <strong>modern</strong>. Admet moltes més particions i discs molt grans, i guarda una còpia del mapa per si
+       es fa malbé.</p>
+    <p>Quan vaig obrir <code>fdisk /dev/sdb</code>, em va dir <em>"Created a new DOS (MBR) disklabel"</em>: el meu disc nou
+       va quedar amb MBR.</p>
+    <figure>
+      <img src="img/fdisk-mbr.png" alt="fdisk creant una etiqueta DOS (MBR)">
+      <figcaption><code>fdisk</code> crea un mapa MBR al disc nou.</figcaption>
+    </figure>
+    <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
+  </article>
+
     <article class="apartat" id="apartat2">
       <h2>2. Estructura de la informació</h2>
       <p>La informació s'organitza en arxius i directoris. Els directoris

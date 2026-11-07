@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sprint 2 · Gestió de la informació del sistema i administració</title>
+<title>Sprint 2 · Gestió de discos, processos, usuaris i permisos</title>
 <link rel="stylesheet" href="../../css/estils.css">
 </head>
 <body>
@@ -16,8 +16,8 @@
   </nav>
   <div class="hero-titol">
     <p class="miguetes"><a href="../../index.html">Portada</a> / <a href="../../sprints.html">Índex de sprints</a> / Sprint 2</p>
-    <h1>Sprint 2 · Gestió de la informació del sistema i administració</h1>
-    <p class="subtitol">Índex dels apartats i les pràctiques d’aquest sprint</p>
+    <h1>Sprint 2 · Gestió de discos, processos, usuaris i permisos</h1>
+    <p class="subtitol">Índex de la teoria i les pràctiques d'aquest sprint</p>
   </div>
 </header>
 
@@ -194,11 +194,16 @@ du -b prova.txt     # 5</code></pre>
         <figure><img src="img/rec-23.png" alt="Per netejar, esborro disc.img, les carpetes recuperades i originals.sha amb rm -rf. A ~/practica només queden els tres fitxers originals." loading="lazy"><figcaption>Per netejar, esborro <code>disc.img</code>, les carpetes recuperades i <code>originals.sha</code> amb <code>rm -rf</code>. A <code>~/practica</code> només queden els tres fitxers originals.</figcaption></figure>
     <h4>Preguntes de la pràctica</h4>
     <ol>
-      <li><strong>Després de la part 3, el disc semblava buit. On eren realment els fitxers?</strong><br>Als mateixos blocs de sempre. En formatar només es crea un sistema de fitxers nou, és a dir, s'esborra l'índex que diu on són les coses, però no s'esborren les dades.</li>
-      <li><strong>Per què els fitxers recuperats tenen noms diferents dels originals?</strong><br>El nom no és dins del fitxer, sinó a les metadades del sistema de fitxers. En formatar-se es perden, i PhotoRec només recupera el contingut i li posa un nom nou.</li>
-      <li><strong>Com puc demostrar que la foto recuperada és exactament la mateixa que l'original?</strong><br>Calculant el SHA-256 de totes dues. Si el resultat és igual, els fitxers són idèntics byte a byte; a la captura coincideixen.</li>
-      <li><strong>Per què PhotoRec ha trobat la foto i el PDF, però no <code>notes.txt</code>? Com l'he trobat igualment?</strong><br>PhotoRec reconeix els fitxers per la seva capçalera, i una foto o un PDF en tenen. Un text pla no en té cap. El vaig trobar amb <code>strings</code> i <code>grep</code>, que busquen text dins del disc.</li>
-      <li><strong>Vull vendre un USB on tenia fotos personals. Quin formatge faria abans de vendre'l i per què?</strong><br>Un formatatge normal no n'hi ha prou, perquè les dades es poden recuperar, com he vist. Faria una sobreescriptura completa (com la dels zeros, o millor amb l'esborrat segur del fabricant) perquè no quedi res per recuperar.</li>
+      <li><strong>Després de la part 3, el disc semblava buit. On eren realment els teus fitxers?</strong>
+        <p>Eren exactament al mateix lloc de sempre, dins del disc. Quan vaig tornar a formatar, només es va esborrar la «llista» que diu on és cada fitxer, però els fitxers no. És com treure l'índex d'un llibre: les pàgines hi continuen, però ja no saps on buscar-les. Per això després PhotoRec els va poder trobar.</p></li>
+      <li><strong>Per què els fitxers recuperats tenen noms diferents dels originals?</strong>
+        <p>Perquè el nom no està dins del fitxer. El nom el guarda el sistema de fitxers a part, a la mateixa llista que es va esborrar en formatar. PhotoRec només troba el contingut, i com que no sap com es deia, li posa un nom nou (per exemple <code>f0274432.png</code>).</p></li>
+      <li><strong>Com pots demostrar que la foto recuperada és exactament la mateixa que l'original?</strong>
+        <p>Comparant la seva empremta digital, el SHA-256. Abans de formatar vaig calcular l'empremta dels originals amb <code>sha256sum</code> i la vaig guardar a <code>originals.sha</code>. Després vaig calcular la dels recuperats. A la captura es veu que l'empremta de la foto és igual a la de l'original, i la del PDF també. Si només hagués canviat un punt de la imatge, l'empremta seria completament diferent, així que són el mateix fitxer.</p></li>
+      <li><strong>Per què PhotoRec ha trobat la foto i el PDF, però no el notes.txt? Com l'has trobat igualment?</strong>
+        <p>PhotoRec reconeix els fitxers pel que hi ha al principi (la capçalera). Les fotos i els PDF en tenen una de pròpia, però un text normal no, i per això no el va saber trobar. Jo el vaig trobar amb <code>strings -e S disc.img | grep pizza</code>, que busca lletres soltes dins del disc, i va sortir la frase.</p></li>
+      <li><strong>Vols vendre un USB on tenies fotos personals. Quin formateig faries abans de vendre'l i per què?</strong>
+        <p>Faria un esborrat segur, no un formatatge normal. Ho he vist a la pràctica: amb un formatatge normal les fotos es poden recuperar. Hauria de sobreescriure tot el USB, com vaig fer amb els zeros (després PhotoRec ja no va trobar la foto ni el PDF), o fer servir l'esborrat segur del fabricant. Així el comprador no podria recuperar les meves fotos.</p></li>
     </ol>
 
     <h3 id="pract2">Pràctica 2: particions i muntatge</h3>
@@ -491,7 +496,7 @@ du -b prova.txt     # 5</code></pre>
     </a>
     <span>Contingut sota llicència <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ca" target="_blank" rel="license noopener">CC BY-NC-SA 4.0</a></span>
   </p>
-  <p class="autoria">Autor/a: <strong>Merieme Hamdi Oukhelfen</strong> · Sprint 2 · Sistemes Operatius (ISOPJ1)</p>
+  <p class="autoria">Autor/a: <strong>EL_TEU_NOM</strong> · Sprint 2 · Sistemes Operatius (ISOPJ1)</p>
 </footer>
 
 </body>

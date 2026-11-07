@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sprint 2 · Gestió de programari i usuaris</title>
+<title>Sprint 2 · Gestió de la informació del sistema i administració</title>
 <link rel="stylesheet" href="../../css/estils.css">
 </head>
 <body>
@@ -12,46 +12,49 @@
   <nav class="hero-nav">
     <a href="../../index.html">Portada</a>
     <a href="../../sprints.html">Índex de sprints</a>
-    <a href="https://github.com/" target="_blank" rel="noopener">Codi a GitHub ↗</a>
+    <a href="https://github.com/EL_TEU_USUARI/EL_TEU_REPO" target="_blank" rel="noopener">Codi a GitHub ↗</a>
   </nav>
   <div class="hero-titol">
-    <p class="miguetes"><a href="../index.html">Portada</a> / <a href="../sprints.html">Índex de sprints</a> / Sprint 2</p>
-    <h1>Sprint 2 · Gestió de programari i usuaris</h1>
-    <p class="subtitol">Índex d'apartats d'aquest sprint</p>
+    <p class="miguetes"><a href="../../index.html">Portada</a> / <a href="../../sprints.html">Índex de sprints</a> / Sprint 2</p>
+    <h1>Sprint 2 · Gestió de la informació del sistema i administració</h1>
   </div>
 </header>
 
 <main class="contenidor">
-  <section class="panell">
-    <a id="index-apartats"></a>
-    <table class="taula-apartats">
-      <thead>
-        <tr><th>#</th><th>Apartat</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>1</td><td><a href="#apartat1">Sistemes de fitxers i particions</a></td></tr>
-        <tr><td>2</td><td><a href="#apartat2">Estructura de la informació</a></td></tr>
-        <tr><td>3</td><td><a href="#apartat3">Sistemes de fitxers</a></td></tr>
-        <tr><td>4</td><td><a href="#apartat4">Tipus de formatatge</a></td></tr> 
-        <tr><td>5</td><td><a href="#apartat5">Gestió de processos</a></td></tr>
-        <tr><td>6</td><td><a href="#apartat6">Còpies de seguretat i automatització de tasques</a></td></tr>
-        <tr><td>7</td><td><a href="#apartat7">Gestió d’usuaris i grups i permisos</a></td></tr>        
-        <tr><td>8</td><td><a href="#apartat8">Quotes de disc</a></td></tr>
+<section class="panell">
+  <a id="index-apartats"></a>
+  <table class="taula-apartats">
+    <thead><tr><th>#</th><th>Apartat</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><a href="#apartat1">Sistemes de fitxers i particions</a></td></tr>
+      <tr><td>2</td><td><a href="#apartat2">Estructura de la informació</a></td></tr>
+      <tr><td>3</td><td><a href="#apartat3">Sistemes de fitxers</a></td></tr>
+      <tr><td>4</td><td><a href="#apartat4">Tipus de formatatge</a></td></tr>
+      <tr><td>4.1</td><td><a href="#pract1">Pràctica 1: recuperació de fitxers després d'un formatatge</a></td></tr>
+      <tr><td>4.2</td><td><a href="#pract2">Pràctica 2: particions i muntatge</a></td></tr>
+      <tr><td>5</td><td><a href="#apartat5">Gestió de processos</a></td></tr>
+      <tr><td>6</td><td><a href="#apartat6">Còpies de seguretat i automatització de tasques</a></td></tr>
+      <tr><td>7</td><td><a href="#apartat7">Gestió d’usuaris i grups i permisos</a></td></tr>
+      <tr><td>7.1</td><td><a href="#apartat7-1">Gestió d’usuaris i grups</a></td></tr>
+      <tr><td>7.2</td><td><a href="#apartat7-2">Permisos</a></td></tr>
+      <tr><td>8</td><td><a href="#apartat8">Quotes de disc</a></td></tr>
+    </tbody>
+  </table>
 
-      </tbody>
-    </table>
-
-     <article class="apartat" id="apartat1">
+  <!-- ============ 1 ============ -->
+  <article class="apartat" id="apartat1">
     <h2>1. Sistemes de fitxers i particions</h2>
 
     <h3>Estructura física d'un disc</h3>
     <h4>Què és?</h4>
-    <p>És <strong>com és el disc per dins, el maquinari de veritat</strong>. Un disc dur té plats que giren i la superfície
-       es divideix en trossos molt petits que es diuen <strong>sectors</strong>. Un SSD no té plats, però també treballa amb sectors.
-       El sector és la unitat més petita que el disc pot guardar a nivell físic. Al meu disc virtual <code>/dev/sdb</code>
-       (25 GiB), cada sector fa <strong>512 bytes</strong>.</p>
+    <p>És <strong>com està fet el disc per dins</strong>, el maquinari de veritat. En un disc dur mecànic hi ha plats que giren,
+       i cada plat es talla en cercles (pistes) que alhora es divideixen en trossets (<strong>sectors</strong>). Un SSD no té peces que es moguin:
+       guarda les dades en xips de memòria, però també es presenta a l'ordinador dividit en sectors.</p>
+    <p>El sector és la peça més petita que el disc sap guardar. Al meu disc virtual <code>/dev/sdb</code> (25 GiB) cada sector fa
+       <strong>512 bytes</strong>. Alguns discs moderns escriuen de veritat en trossos de 4096 bytes, però es fan passar per sectors de 512
+       perquè els programes vells els entenguin. Per això la mida que diu el sistema no sempre és la que hi ha realment al disc.</p>
     <figure>
-      <img src="imatge/dsk1.png" alt="fdisk mostrant /dev/sdb de 25 GiB amb sectors de 512 bytes">
+      <img src="img/fdisk-sdb.png" alt="fdisk mostrant /dev/sdb de 25 GiB amb sectors de 512 bytes">
       <figcaption>El disc <code>/dev/sdb</code>: 25 GiB i sectors de 512 bytes.</figcaption>
     </figure>
 
@@ -60,11 +63,14 @@
     <p>L'estructura lògica és <strong>com es reparteix el disc</strong> en parts (particions). Per això el disc té un "mapa"
        que diu on comença i acaba cada part. Hi ha dos tipus de mapa:</p>
     <h5>MBR</h5>
-    <p>És el mapa <strong>antic</strong>. És senzill, però només admet <strong>4 particions principals</strong> i discs de
-       fins a uns <strong>2 TB</strong>.</p>
+    <p>És el mapa <strong>antic i senzill</strong>. Només deixa fer <strong>4 particions principals</strong> i els discs no poden passar d'uns
+       <strong>2 TB</strong>. Si en necessites més de quatre, una de les principals es converteix en una "caixa" (partició estesa)
+       que dins en pot tenir més (particions lògiques).</p>
     <h5>GPT</h5>
-    <p>És el mapa <strong>modern</strong>. Admet moltes més particions i discs molt grans, i guarda una còpia del mapa per si
-       es fa malbé.</p>
+    <p>És el mapa <strong>modern</strong>, fet per a discs grans i per a moltes particions sense el límit de quatre. A més, en guarda
+       còpies i les comprova, així que detecta si s'ha fet malbé.</p>
+    <p>Quin triar? Depèn del disc i de com arrenca l'ordinador. GPT va amb l'arrencada moderna (UEFI) i és el normal als equips d'avui; MBR es
+       fa servir sobretot per compatibilitat amb equips vells. Atenció: MBR i GPT són maneres de dividir el disc, no maneres d'arrencar.</p>
     <p>Quan vaig obrir <code>fdisk /dev/sdb</code>, em va dir <em>"Created a new DOS (MBR) disklabel"</em>: el meu disc nou
        va quedar amb MBR.</p>
     <figure>
@@ -74,55 +80,406 @@
     <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
   </article>
 
-    <article class="apartat" id="apartat2">
-      <h2>2. Estructura de la informació</h2>
-      <p>La informació s'organitza en arxius i directoris. Els directoris
-         permeten agrupar els arxius i crear una estructura jeràrquica per
-         trobar-los i gestionar-los amb facilitat.</p>
-      <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
-    </article>
-    <article class="apartat" id="apartat3">
-      <h2>3. Sistemes de fitxers</h2>
-      <p>Un sistema de fitxers defineix com s'emmagatzemen, s'organitzen i es
-         localitzen les dades en un dispositiu. Cada sistema operatiu pot
-         treballar amb diferents sistemes de fitxers.</p>
-      <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
-    </article>
-    <article class="apartat" id="apartat4">
-      <h2>4. Tipus de formatatge</h2>
-      <p>El formatatge prepara un dispositiu perquè pugui emmagatzemar dades.
-         Segons el nivell, pot inicialitzar el suport físic o crear les
-         estructures del sistema de fitxers.</p>
-      <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
-    </article>
-    <article class="apartat" id="apartat5">
-      <h2>5. Gestió de processos</h2>
-      <p>Un procés és un programa en execució. El sistema operatiu n'administra
-         l'estat i els recursos, i permet consultar-los, iniciar-los o
-         finalitzar-los.</p>
-      <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
-    </article>
-    <article class="apartat" id="apartat6">
-      <h2>6. Còpies de seguretat i automatització de tasques</h2>
-      <p>Les còpies de seguretat permeten recuperar dades després d'una pèrdua
-         o una avaria. Automatitzar-ne la creació i altres tasques periòdiques
-         ajuda a fer-les de manera regular.</p>
-      <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
-    </article>
-    <article class="apartat" id="apartat7">
-      <h2>7. Gestió d’usuaris i grups i permisos</h2>
-      <p>Cada arxiu té un <strong>propietari, un grup i uns permisos</strong>
-         que determinen qui el pot llegir, modificar o executar. Els usuaris
-         i grups ajuden a gestionar aquests accessos.</p>
-      <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
-    </article>
-    <article class="apartat" id="apartat8">
-      <h2>8. Quotes de disc</h2>
-      <p>Les quotes de disc permeten limitar l'espai d'emmagatzematge que pot
-         utilitzar cada usuari o grup, i així evitar que un sol compte ocupi
-         tot l'espai disponible.</p>
-      <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
-    </article>
+  <article class="apartat" id="apartat2">
+    <h2>2. Estructura de la informació</h2>
+    <h3>Què és una partició i què és un volum?</h3>
+    <p>Pensa en el disc com un <strong>terreny</strong>.</p>
+    <ul>
+      <li><strong>Partició:</strong> és una <strong>parcel·la</strong> del terreny, una part del disc que es separa de la resta.
+          Un sol disc en pot tenir diverses i cadascuna es comporta com si fos un disc independent.</li>
+      <li><strong>Volum:</strong> és la partició <strong>quan el sistema operatiu ja la pot fer servir</strong>
+          (amb un sistema de fitxers i muntada). Normalment un volum és una partició, però a vegades un volum
+          pot ocupar diverses.</li>
+    </ul>
+    <p>Al damunt del volum es construeix el <strong>sistema de fitxers</strong>: l'"índex" que sap quines carpetes i fitxers hi ha i on
+       són les seves dades. Per això <strong>particionar i formatar no és el mateix</strong>: particionar és tallar la parcel·la, i formatar és
+       construir-hi la casa.</p>
+    <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
+  </article>
+
+  <article class="apartat" id="apartat3">
+    <h2>3. Sistemes de fitxers</h2>
+    <h3>Sector i bloc</h3>
+    <p>El <strong>sector</strong> (512 bytes al meu disc) és la peça més petita a nivell físic i no es pot canviar. Però el sistema de fitxers no
+       treballa amb peces tan petites: n'agrupa unes quantes en un <strong>bloc</strong>. Al meu cas, un bloc fa
+       <strong>4096 bytes</strong> (8 sectors). La mida del bloc es decideix quan es crea el sistema de fitxers, i després no es pot canviar sense
+       tornar-lo a crear.</p>
+    <figure>
+      <img src="img/tune2fs-block.png" alt="Sortida de tune2fs amb Block size 4096">
+      <figcaption>Amb <code>tune2fs -l /dev/sdb2 | grep Block</code> es veu la mida del bloc: 4096.</figcaption>
+    </figure>
+
+    <h3>La fragmentació</h3>
+    <p>Pot ser interna o externa.</p>
+    <h4>Fragmentació interna</h4>
+    <p>Un bloc és com una <strong>caixa</strong>: encara que hi posis una cosa petita, la caixa queda ocupada sencera. Ho vaig comprovar
+       amb un fitxer de 5 bytes:</p>
+<pre><code>echo "Hola" &gt; prova.txt
+ls -l prova.txt     # 5 bytes (el que hi ha escrit)
+du -h prova.txt     # 4,0K (el que ocupa al disc)
+du -b prova.txt     # 5</code></pre>
+    <p>Té 5 bytes però ocupa 4 KB, perquè se'n va un bloc sencer. L'espai que es perd dins del bloc és la fragmentació interna. Si els blocs són grans, es perd més amb molts fitxers petits; si són petits, es perd menys, però el sistema ha de controlar molts més blocs i va una mica més carregat.</p>
+    <figure>
+      <img src="img/du-prova.png" alt="ls i du amb prova.txt de 5 bytes i 4,0K">
+      <figcaption>5 bytes de contingut, 4,0K ocupats.</figcaption>
+    </figure>
+    <h4>Fragmentació externa</h4>
+    <p>Quan es creen i s'esborren fitxers durant molt de temps, el disc queda ple de forats lliures de mides diferents. Un fitxer nou que no cap en cap forat es
+       <strong>parteix en trossos</strong> i queda escampat pel disc. En un disc dur mecànic això alenteix, perquè el capçal que llegeix ha de
+       moure's d'un lloc a l'altre. Per arreglar-ho es pot <strong>desfragmentar</strong>, que reordena els trossos. En un SSD no cal fer-ho com a rutina:
+       no hi ha capçal, l'accés és igual de ràpid a tot arreu i reescriure tantes dades gasta el disc.</p>
+
+    <h3>Sistemes de fitxers segons el sistema operatiu</h3>
+    <h4>Quins fan servir Windows i Ubuntu?</h4>
+    <ul>
+      <li><strong>Windows:</strong> FAT, FAT32 i NTFS.</li>
+      <li><strong>Ubuntu:</strong> ext4.</li>
+    </ul>
+    <p>Quin sistema de fitxers es tria depèn de qui haurà de llegir el disc. Per exemple, un pendrive que s'ha de poder fer servir en
+       Windows i en Linux no seria ext4, sinó un com exFAT o NTFS, que els dos entenen.</p>
+    <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
+  </article>
+
+  <article class="apartat" id="apartat4">
+    <h2>4. Tipus de formatatge</h2>
+    <p>Formatar és preparar un disc perquè s'hi puguin guardar dades. Hi ha tres nivells.</p>
+    <h3>1. De baix nivell</h3>
+    <p>Es prepara el <strong>disc físic</strong> (els sectors). Als discs d'ara ho fa el fabricant i l'usuari no ho pot repetir.
+       Omplir el disc de zeros no és un formatatge de baix nivell de debò, només és escriure damunt de les dades.</p>
+    <h3>2. D'alt nivell</h3>
+    <p>Es fa des del <strong>sistema operatiu</strong>: es crea el sistema de fitxers (carpetes inicials i índex). Un formatatge ràpid només refà aquest índex i
+       no esborra el contingut dels sectors, així que les dades antigues <strong>es poden recuperar</strong> mentre no s'escrigui res a sobre.
+       Si es fa servir el mateix sistema és encara més fàcil, perquè les dades continuen allà.</p>
+    <h3>3. De mig nivell</h3>
+    <p>Es crea el mapa del disc i es tallen les <strong>particions</strong> (amb <code>fdisk</code>). El nom no és igual a tot arreu, però és el
+       pas que hi ha entre el disc físic i el sistema de fitxers.</p>
+
+    <h3 id="pract1">Pràctica 1: recuperació de fitxers després d'un formatatge</h3>
+    <p>En aquesta pràctica he comprovat què passa quan es formata un disc i si es poden recuperar els fitxers. Per no tocar cap disc real he treballat amb un fitxer, <code>disc.img</code>, que fa de disc virtual. Les ordres amb <code>dd</code>, <code>mkfs</code> i <code>rm</code> poden destruir dades, per això només les he aplicat sobre aquest fitxer.</p>
+    <h4>Pas 0 · Preparar la carpeta i els fitxers de prova</h4>
+    <p>Abans de res vaig preparar un entorn de treball amb tres fitxers diferents (una foto, un PDF i un text) per veure després quins es poden recuperar.</p>
+        <figure><img src="img/rec-01.png" alt="Començo mirant què hi ha a la meva carpeta personal amb ls -l." loading="lazy"><figcaption>Començo mirant què hi ha a la meva carpeta personal amb <code>ls -l</code>.</figcaption></figure>
+        <figure><img src="img/rec-02.png" alt="Instal·lo el paquet testdisk amb apt install; hi ve inclòs PhotoRec, el programa que recuperarà els fitxers." loading="lazy"><figcaption>Instal·lo el paquet <code>testdisk</code> amb <code>apt install</code>; hi ve inclòs PhotoRec, el programa que recuperarà els fitxers.</figcaption></figure>
+        <figure><img src="img/rec-03.png" alt="Creo la carpeta de treball ~/practica, hi entro i amb pwd comprovo que sóc a /root/practica." loading="lazy"><figcaption>Creo la carpeta de treball <code>~/practica</code>, hi entro i amb <code>pwd</code> comprovo que sóc a <code>/root/practica</code>.</figcaption></figure>
+        <figure><img src="img/rec-04.png" alt="Hi moc una foto (22.png) amb mv, escric una frase a notes.txt amb echo i amb ls -l veig els dos fitxers." loading="lazy"><figcaption>Hi moc una foto (<code>22.png</code>) amb <code>mv</code>, escric una frase a <code>notes.txt</code> amb <code>echo</code> i amb <code>ls -l</code> veig els dos fitxers.</figcaption></figure>
+        <figure><img src="img/rec-05.png" alt="Hi moc també un PDF. Ara tinc els tres fitxers de prova: una foto, un PDF i un text." loading="lazy"><figcaption>Hi moc també un PDF. Ara tinc els tres fitxers de prova: una foto, un PDF i un text.</figcaption></figure>
+    <h4>Part 1 · Crear el disc virtual</h4>
+    <p>No volia tocar cap disc de veritat, així que vaig crear un fitxer que fa de disc.</p>
+        <figure><img src="img/rec-06.png" alt="Amb dd creo disc.img, un fitxer de 200 MiB ple de zeros que farà de disc virtual." loading="lazy"><figcaption>Amb <code>dd</code> creo <code>disc.img</code>, un fitxer de 200 MiB ple de zeros que farà de disc virtual.</figcaption></figure>
+        <figure><img src="img/rec-07.png" alt="ls -lh disc.img confirma que existeix i que fa 200M." loading="lazy"><figcaption><code>ls -lh disc.img</code> confirma que existeix i que fa 200M.</figcaption></figure>
+    <h4>Part 2 · Formatar el disc i desar-hi els fitxers</h4>
+    <p>Li vaig posar un sistema de fitxers ext4, el vaig muntar com si fos una unitat i hi vaig copiar els fitxers de prova.</p>
+        <figure><img src="img/rec-08.png" alt="Formato el disc virtual amb mkfs.ext4 disc.img. Crea 51200 blocs de 4 KB i un UUID nou." loading="lazy"><figcaption>Formato el disc virtual amb <code>mkfs.ext4 disc.img</code>. Crea 51200 blocs de 4 KB i un UUID nou.</figcaption></figure>
+        <figure><img src="img/rec-09.png" alt="Creo /mnt/prova i hi munto el disc amb mount -o loop. L&#x27;opció loop serveix per muntar un fitxer com si fos un disc." loading="lazy"><figcaption>Creo <code>/mnt/prova</code> i hi munto el disc amb <code>mount -o loop</code>. L'opció <code>loop</code> serveix per muntar un fitxer com si fos un disc.</figcaption></figure>
+        <figure><img src="img/rec-10.png" alt="Copio els tres fitxers dins del disc amb cp. Amb ls -l /mnt/prova els veig, i també lost+found, que crea ext4." loading="lazy"><figcaption>Copio els tres fitxers dins del disc amb <code>cp</code>. Amb <code>ls -l /mnt/prova</code> els veig, i també <code>lost+found</code>, que crea ext4.</figcaption></figure>
+        <figure><img src="img/rec-11.png" alt="Calculo l&#x27;empremta SHA-256 dels originals amb sha256sum i la guardo a originals.sha, per comparar-la després amb la dels recuperats." loading="lazy"><figcaption>Calculo l'empremta SHA-256 dels originals amb <code>sha256sum</code> i la guardo a <code>originals.sha</code>, per comparar-la després amb la dels recuperats.</figcaption></figure>
+        <figure><img src="img/rec-12.png" alt="Desmunto el disc amb umount abans de tornar-lo a formatar." loading="lazy"><figcaption>Desmunto el disc amb <code>umount</code> abans de tornar-lo a formatar.</figcaption></figure>
+    <h4>Part 3 · Formatatge d&#x27;alt nivell</h4>
+    <p>Vaig tornar a crear el sistema de fitxers per veure què passa amb el que hi havia dins.</p>
+        <figure><img src="img/rec-13.png" alt="Torno a formatar amb mkfs.ext4 -E nodiscard. Em diu que disc.img ja conté un ext4 i li responc y." loading="lazy"><figcaption>Torno a formatar amb <code>mkfs.ext4 -E nodiscard</code>. Em diu que <code>disc.img</code> ja conté un ext4 i li responc <code>y</code>.</figcaption></figure>
+        <figure><img src="img/rec-14.png" alt="Munto el disc, miro què hi ha i només surt lost+found: sembla buit. Després el desmunto." loading="lazy"><figcaption>Munto el disc, miro què hi ha i només surt <code>lost+found</code>: sembla buit. Després el desmunto.</figcaption></figure>
+    <h4>Part 4 · Recuperar els fitxers</h4>
+    <p>Encara que el disc semblava buit, les dades continuaven als blocs. Amb PhotoRec vaig intentar recuperar-les.</p>
+        <figure><img src="img/rec-15.png" alt="Executo photorec sobre disc.img; guarda el que troba a la carpeta recup." loading="lazy"><figcaption>Executo <code>photorec</code> sobre <code>disc.img</code>; guarda el que troba a la carpeta <code>recup</code>.</figcaption></figure>
+        <figure><img src="img/rec-16.png" alt="ls recup.1 mostra tres fitxers recuperats amb noms nous: un PDF, una imatge PNG i un report.xml." loading="lazy"><figcaption><code>ls recup.1</code> mostra tres fitxers recuperats amb noms nous: un PDF, una imatge PNG i un <code>report.xml</code>.</figcaption></figure>
+        <figure><img src="img/rec-17.png" alt="Calculo el sha256sum dels recuperats i els comparo amb originals.sha: la foto i el PDF tenen exactament el mateix hash que els originals, així que són idèntics." loading="lazy"><figcaption>Calculo el <code>sha256sum</code> dels recuperats i els comparo amb <code>originals.sha</code>: la foto i el PDF tenen exactament el mateix hash que els originals, així que són idèntics.</figcaption></figure>
+        <figure><img src="img/rec-18.png" alt="PhotoRec no ha trobat el text. El busco amb strings -e S disc.img | grep pizza i la frase surt." loading="lazy"><figcaption>PhotoRec no ha trobat el text. El busco amb <code>strings -e S disc.img | grep pizza</code> i la frase surt.</figcaption></figure>
+    <h4>Part 5 · Esborrat de baix nivell</h4>
+    <p>Per últim vaig omplir el disc de zeros, que sobreescriu les dades, i ho vaig tornar a provar.</p>
+        <figure><img src="img/rec-19.png" alt="Omplo tot el disc de zeros amb dd ... conv=notrunc." loading="lazy"><figcaption>Omplo tot el disc de zeros amb <code>dd ... conv=notrunc</code>.</figcaption></figure>
+        <figure><img src="img/rec-20.png" alt="Torno a executar PhotoRec, ara sobre el disc de zeros, i guarda el resultat a recup_zeros." loading="lazy"><figcaption>Torno a executar PhotoRec, ara sobre el disc de zeros, i guarda el resultat a <code>recup_zeros</code>.</figcaption></figure>
+        <figure><img src="img/rec-21.png" alt="ls recup_zeros.1 només mostra report.xml: ja no hi ha ni la foto ni el PDF." loading="lazy"><figcaption><code>ls recup_zeros.1</code> només mostra <code>report.xml</code>: ja no hi ha ni la foto ni el PDF.</figcaption></figure>
+        <figure><img src="img/rec-22.png" alt="Torno a buscar la frase amb strings i grep, i ara no surt res." loading="lazy"><figcaption>Torno a buscar la frase amb <code>strings</code> i <code>grep</code>, i ara no surt res.</figcaption></figure>
+        <figure><img src="img/rec-23.png" alt="Per netejar, esborro disc.img, les carpetes recuperades i originals.sha amb rm -rf. A ~/practica només queden els tres fitxers originals." loading="lazy"><figcaption>Per netejar, esborro <code>disc.img</code>, les carpetes recuperades i <code>originals.sha</code> amb <code>rm -rf</code>. A <code>~/practica</code> només queden els tres fitxers originals.</figcaption></figure>
+    <h4>Preguntes de la pràctica</h4>
+    <ol>
+      <li><strong>Després de la part 3, el disc semblava buit. On eren realment els fitxers?</strong><br>Als mateixos blocs de sempre. En formatar només es crea un sistema de fitxers nou, és a dir, s'esborra l'índex que diu on són les coses, però no s'esborren les dades.</li>
+      <li><strong>Per què els fitxers recuperats tenen noms diferents dels originals?</strong><br>El nom no és dins del fitxer, sinó a les metadades del sistema de fitxers. En formatar-se es perden, i PhotoRec només recupera el contingut i li posa un nom nou.</li>
+      <li><strong>Com puc demostrar que la foto recuperada és exactament la mateixa que l'original?</strong><br>Calculant el SHA-256 de totes dues. Si el resultat és igual, els fitxers són idèntics byte a byte; a la captura coincideixen.</li>
+      <li><strong>Per què PhotoRec ha trobat la foto i el PDF, però no <code>notes.txt</code>? Com l'he trobat igualment?</strong><br>PhotoRec reconeix els fitxers per la seva capçalera, i una foto o un PDF en tenen. Un text pla no en té cap. El vaig trobar amb <code>strings</code> i <code>grep</code>, que busquen text dins del disc.</li>
+      <li><strong>Vull vendre un USB on tenia fotos personals. Quin formatge faria abans de vendre'l i per què?</strong><br>Un formatatge normal no n'hi ha prou, perquè les dades es poden recuperar, com he vist. Faria una sobreescriptura completa (com la dels zeros, o millor amb l'esborrat segur del fabricant) perquè no quedi res per recuperar.</li>
+    </ol>
+
+    <h3 id="pract2">Pràctica 2: particions i muntatge</h3>
+    <p>Aquí he treballat amb un disc virtual afegit a la màquina Ubuntu per crear una partició, formatar-la amb ext4, muntar-la en una carpeta i deixar-la preparada per muntar-se sola amb <code>/etc/fstab</code>. Així he vist la diferència entre disc, partició, sistema de fitxers i punt de muntatge.</p>
+    <h4>Pas 1 · Identificar el disc virtual</h4>
+    <p>Vaig afegir un disc a la màquina Ubuntu i el vaig buscar amb <code>fdisk</code>.</p>
+        <figure><img src="img/part-01.png" alt="El sistema el veu com /dev/sdb: 25 GiB i sectors de 512 bytes." loading="lazy"><figcaption>El sistema el veu com <code>/dev/sdb</code>: 25 GiB i sectors de 512 bytes.</figcaption></figure>
+    <h4>Pas 2 · Crear una partició amb fdisk</h4>
+    <p>Dins de <code>fdisk</code> creo una partició nova amb <code>n</code> i guardo amb <code>w</code>. Fins que no poso <code>w</code>, res no s'escriu al disc.</p>
+        <figure><img src="img/part-02.png" alt="fdisk /dev/sdb avisa que no té taula de particions i crea una etiqueta DOS (MBR)." loading="lazy"><figcaption><code>fdisk /dev/sdb</code> avisa que no té taula de particions i crea una etiqueta DOS (MBR).</figcaption></figure>
+        <figure><img src="img/part-03.png" alt="Amb m veig l&#x27;ajuda de fdisk." loading="lazy"><figcaption>Amb <code>m</code> veig l'ajuda de <code>fdisk</code>.</figcaption></figure>
+        <figure><img src="img/part-04.png" alt="Després de crear-la, la taula mostra /dev/sdb1, de tipus Linux, del sector 2048 al 200000 (96,7 MiB)." loading="lazy"><figcaption>Després de crear-la, la taula mostra <code>/dev/sdb1</code>, de tipus Linux, del sector 2048 al 200000 (96,7 MiB).</figcaption></figure>
+    <h4>Pas 3 · Crear el sistema de fitxers</h4>
+    <p>Amb <code>mkfs.ext4</code> creo el sistema de fitxers; l'opció <code>-b</code> tria la mida del bloc.</p>
+        <figure><img src="img/part-05.png" alt="mkfs.ext4 -b 8192 /dev/sdb1 avisa que la mida del bloc és massa gran per al sistema (màxim 4096) i demana confirmació." loading="lazy"><figcaption><code>mkfs.ext4 -b 8192 /dev/sdb1</code> avisa que la mida del bloc és massa gran per al sistema (màxim 4096) i demana confirmació.</figcaption></figure>
+        <figure><img src="img/part-06.png" alt="Confirmo i crea el sistema de fitxers amb 12372 blocs de 8 KB i 12384 nodes-i." loading="lazy"><figcaption>Confirmo i crea el sistema de fitxers amb 12372 blocs de 8 KB i 12384 nodes-i.</figcaption></figure>
+    <h4>Pas 4 · Muntar la partició</h4>
+    <p>Muntar és connectar la partició a una carpeta, el punt de muntatge.</p>
+        <figure><img src="img/part-07.png" alt="tune2fs -l /dev/sdb1 | grep block mostra dades dels blocs del sistema de fitxers." loading="lazy"><figcaption><code>tune2fs -l /dev/sdb1 | grep block</code> mostra dades dels blocs del sistema de fitxers.</figcaption></figure>
+        <figure><img src="img/part-08.png" alt="Creo /mnt/particion i hi munto /dev/sdb1 amb mount." loading="lazy"><figcaption>Creo <code>/mnt/particion</code> i hi munto <code>/dev/sdb1</code> amb <code>mount</code>.</figcaption></figure>
+        <figure><img src="img/part-09.png" alt="Dins hi veig lost+found, i hi creo la carpeta prova i el fitxer prova2." loading="lazy"><figcaption>Dins hi veig <code>lost+found</code>, i hi creo la carpeta <code>prova</code> i el fitxer <code>prova2</code>.</figcaption></figure>
+        <figure><img src="img/part-10.png" alt="Amb umount /dev/sdb1 la desmunto: /mnt/particion queda buida." loading="lazy"><figcaption>Amb <code>umount /dev/sdb1</code> la desmunto: <code>/mnt/particion</code> queda buida.</figcaption></figure>
+        <figure><img src="img/part-11.png" alt="La torno a muntar amb mount -t ext4 /dev/sdb1 /mnt/particion/." loading="lazy"><figcaption>La torno a muntar amb <code>mount -t ext4 /dev/sdb1 /mnt/particion/</code>.</figcaption></figure>
+        <figure><img src="img/part-12.png" alt="Els meus fitxers (prova i prova2) tornen a aparèixer." loading="lazy"><figcaption>Els meus fitxers (<code>prova</code> i <code>prova2</code>) tornen a aparèixer.</figcaption></figure>
+    <h4>Pas 5 · Muntar-la automàticament amb fstab</h4>
+    <p>Per no haver-la de muntar a mà cada cop, la poso a <code>/etc/fstab</code>. Amb <code>blkid</code> miro l'UUID de la partició.</p>
+        <figure><img src="img/part-13.png" alt="blkid /dev/sdb1 mostra l&#x27;UUID, el tipus ext4 i la mida de bloc." loading="lazy"><figcaption><code>blkid /dev/sdb1</code> mostra l'UUID, el tipus ext4 i la mida de bloc.</figcaption></figure>
+        <figure><img src="img/part-14.png" alt="Obro /etc/fstab amb nano per afegir-hi la línia de la partició." loading="lazy"><figcaption>Obro <code>/etc/fstab</code> amb <code>nano</code> per afegir-hi la línia de la partició.</figcaption></figure>
+    <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
+  </article>
+
+  <article class="apartat" id="apartat5">
+    <h2>5. Gestió de processos</h2>
+    <p>Missió «El servidor va lent»: un servidor Ubuntu té processos que no hi haurien de ser i una descàrrega urgent ha d'acabar com més aviat millor. Un procés és un programa mentre s'executa, i cada un té un número, el PID. He treballat amb uns scripts que simulen el problema.</p>
+    <h4>Pas 0 · Preparar la missió</h4>
+    <p>Vaig crear la carpeta de la missió i cinc scripts. Un script és un fitxer de text amb ordres que el sistema executa una darrere l'altra.</p>
+        <figure><img src="img/proc-01.png" alt="Entro com a administrador amb sudo su." loading="lazy"><figcaption>Entro com a administrador amb <code>sudo su</code>.</figcaption></figure>
+        <figure><img src="img/proc-02.png" alt="Creo la carpeta de la missió: mkdir ~/missio." loading="lazy"><figcaption>Creo la carpeta de la missió: <code>mkdir ~/missio</code>.</figcaption></figure>
+        <figure><img src="img/proc-03.png" alt="Hi entro amb cd i amb pwd comprovo que sóc a /root/missio." loading="lazy"><figcaption>Hi entro amb <code>cd</code> i amb <code>pwd</code> comprovo que sóc a <code>/root/missio</code>.</figcaption></figure>
+        <figure><img src="img/proc-04.png" alt="Obro l&#x27;editor nano per crear el primer script, minador." loading="lazy"><figcaption>Obro l'editor <code>nano</code> per crear el primer script, <code>minador</code>.</figcaption></figure>
+        <figure><img src="img/proc-05.png" alt="Hi escric tres línies: la capçalera #! /bin/bash, un comentari i un bucle infinit while true; do :; done, que només gasta CPU." loading="lazy"><figcaption>Hi escric tres línies: la capçalera <code>#! /bin/bash</code>, un comentari i un bucle infinit <code>while true; do :; done</code>, que només gasta CPU.</figcaption></figure>
+        <figure><img src="img/proc-06.png" alt="Amb cat minador comprovo que s&#x27;ha desat bé." loading="lazy"><figcaption>Amb <code>cat minador</code> comprovo que s'ha desat bé.</figcaption></figure>
+        <figure><img src="img/proc-07.png" alt="ls -l minador mostra -rw-r--r--: encara no té permís d&#x27;execució." loading="lazy"><figcaption><code>ls -l minador</code> mostra <code>-rw-r--r--</code>: encara no té permís d'execució.</figcaption></figure>
+        <figure><img src="img/proc-08.png" alt="Si el vull executar amb ./minador em dona «S&#x27;ha denegat el permís»." loading="lazy"><figcaption>Si el vull executar amb <code>./minador</code> em dona «S'ha denegat el permís».</figcaption></figure>
+        <figure><img src="img/proc-09.png" alt="Amb chmod +x minador li dono permís d&#x27;execució i ls -l ja el mostra amb x i en verd." loading="lazy"><figcaption>Amb <code>chmod +x minador</code> li dono permís d'execució i <code>ls -l</code> ja el mostra amb <code>x</code> i en verd.</figcaption></figure>
+        <figure><img src="img/proc-10.png" alt="Creo backup_nocturn: un bucle que només fa sleep 60, com una còpia de seguretat que espera." loading="lazy"><figcaption>Creo <code>backup_nocturn</code>: un bucle que només fa <code>sleep 60</code>, com una còpia de seguretat que espera.</figcaption></figure>
+        <figure><img src="img/proc-11.png" alt="Creo espia: amb trap ignora el senyal SIGTERM i escriu un missatge en lloc de tancar-se." loading="lazy"><figcaption>Creo <code>espia</code>: amb <code>trap</code> ignora el senyal SIGTERM i escriu un missatge en lloc de tancar-se.</figcaption></figure>
+        <figure><img src="img/proc-12.png" alt="Creo descarrega.sh, que simula una descàrrega i va escrivint el percentatge a progres.txt." loading="lazy"><figcaption>Creo <code>descarrega.sh</code>, que simula una descàrrega i va escrivint el percentatge a <code>progres.txt</code>.</figcaption></figure>
+        <figure><img src="img/proc-13.png" alt="Creo sospitosos.sh, que engega els dos minadors, el backup i l&#x27;espia en segon pla." loading="lazy"><figcaption>Creo <code>sospitosos.sh</code>, que engega els dos minadors, el backup i l'espia en segon pla.</figcaption></figure>
+        <figure><img src="img/proc-14.png" alt="Les ordres nano que vaig fer servir per crear i obrir els scripts." loading="lazy"><figcaption>Les ordres <code>nano</code> que vaig fer servir per crear i obrir els scripts.</figcaption></figure>
+        <figure><img src="img/proc-15.png" alt="Dono permís d&#x27;execució als scripts de cop amb chmod +x i amb ls -l veig els cinc fitxers executables." loading="lazy"><figcaption>Dono permís d'execució als scripts de cop amb <code>chmod +x</code> i amb <code>ls -l</code> veig els cinc fitxers executables.</figcaption></figure>
+        <figure><img src="img/proc-16.png" alt="Executo ./sospitosos.sh: surt «Fet. El servidor comença a anar lent...» i els sospitosos ja treballen en segon pla." loading="lazy"><figcaption>Executo <code>./sospitosos.sh</code>: surt «Fet. El servidor comença a anar lent...» i els sospitosos ja treballen en segon pla.</figcaption></figure>
+    <h4>Pas 1 · Reconeixement: veure els processos</h4>
+    <p>Primer vaig mirar quants processos hi ha i on eren els sospitosos.</p>
+        <figure><img src="img/proc-17.png" alt="echo $$ em dona el PID de la meva shell (996925)." loading="lazy"><figcaption><code>echo $$</code> em dona el PID de la meva shell (996925).</figcaption></figure>
+        <figure><img src="img/proc-18.png" alt="ps mostra els processos d&#x27;aquest terminal: sudo, su, bash, els minadors, els espies, els backups i sleep." loading="lazy"><figcaption><code>ps</code> mostra els processos d'aquest terminal: <code>sudo</code>, <code>su</code>, <code>bash</code>, els minadors, els espies, els backups i <code>sleep</code>.</figcaption></figure>
+        <figure><img src="img/proc-19.png" alt="ps -u $USER llista tots els processos de l&#x27;usuari." loading="lazy"><figcaption><code>ps -u $USER</code> llista tots els processos de l'usuari.</figcaption></figure>
+        <figure><img src="img/proc-20.png" alt="ps -A | wc -l compta tots els processos del sistema: 246." loading="lazy"><figcaption><code>ps -A | wc -l</code> compta tots els processos del sistema: 246.</figcaption></figure>
+        <figure><img src="img/proc-21.png" alt="pstree -p mostra l&#x27;arbre de processos; aquí es veuen backup_nocturn i espia amb el seu sleep fill." loading="lazy"><figcaption><code>pstree -p</code> mostra l'arbre de processos; aquí es veuen <code>backup_nocturn</code> i <code>espia</code> amb el seu <code>sleep</code> fill.</figcaption></figure>
+        <figure><img src="img/proc-22.png" alt="Més avall de l&#x27;arbre apareixen els processos minador." loading="lazy"><figcaption>Més avall de l'arbre apareixen els processos <code>minador</code>.</figcaption></figure>
+    <h4>Pas 2 · Qui consumeix més?</h4>
+    <p>Aquí vaig buscar quins processos fan servir més CPU.</p>
+        <figure><img src="img/proc-23.png" alt="Obro top: els minador són dalt de tot, gastant CPU." loading="lazy"><figcaption>Obro <code>top</code>: els <code>minador</code> són dalt de tot, gastant CPU.</figcaption></figure>
+        <figure><img src="img/proc-24.png" alt="ps aux --sort=-%cpu | head -6 també els mostra primers, ordenats per CPU." loading="lazy"><figcaption><code>ps aux --sort=-%cpu | head -6</code> també els mostra primers, ordenats per CPU.</figcaption></figure>
+    <h4>Pas 3 · Interrogatori amb ps</h4>
+    <p>Vaig fer servir <code>ps</code> i <code>pgrep</code> per trobar el PID de cada sospitós i saber-ne més coses.</p>
+        <figure><img src="img/proc-25.png" alt="ps aux | grep minador filtra només els minadors; l&#x27;última línia és el mateix grep." loading="lazy"><figcaption><code>ps aux | grep minador</code> filtra només els minadors; l'última línia és el mateix <code>grep</code>.</figcaption></figure>
+        <figure><img src="img/proc-26.png" alt="Amb grep [m]inador evito que surti la línia del propi grep." loading="lazy"><figcaption>Amb <code>grep [m]inador</code> evito que surti la línia del propi <code>grep</code>.</figcaption></figure>
+        <figure><img src="img/proc-27.png" alt="pgrep minador dona només els PID." loading="lazy"><figcaption><code>pgrep minador</code> dona només els PID.</figcaption></figure>
+        <figure><img src="img/proc-28.png" alt="pgrep -l &#x27;minador|espia|backup&#x27; busca els tres sospitosos alhora, amb el nom al costat del PID." loading="lazy"><figcaption><code>pgrep -l 'minador|espia|backup'</code> busca els tres sospitosos alhora, amb el nom al costat del PID.</figcaption></figure>
+        <figure><img src="img/proc-29.png" alt="ps -o pid,ppid,user,stat,etime,%cpu,comm -C ... mostra només les columnes que m&#x27;interessen: PID, pare, estat, temps i CPU." loading="lazy"><figcaption><code>ps -o pid,ppid,user,stat,etime,%cpu,comm -C ...</code> mostra només les columnes que m'interessen: PID, pare, estat, temps i CPU.</figcaption></figure>
+        <figure><img src="img/proc-30.png" alt="En una altra tanda de proves, top mostra tres minador amb els PID 3260, 3261 i 3293." loading="lazy"><figcaption>En una altra tanda de proves, <code>top</code> mostra tres <code>minador</code> amb els PID 3260, 3261 i 3293.</figcaption></figure>
+        <figure><img src="img/proc-31.png" alt="ps -o pid,comm -p 3261 confirma que aquest PID és un minador." loading="lazy"><figcaption><code>ps -o pid,comm -p 3261</code> confirma que aquest PID és un <code>minador</code>.</figcaption></figure>
+    <h4>Pas 4 · La descàrrega urgent: primer i segon pla</h4>
+    <p>Vaig moure la descàrrega entre primer pla, pausa i segon pla, mentre vigilava el progrés amb un monitor.</p>
+        <figure><img src="img/proc-32.png" alt="Creo el fitxer de progrés amb echo &quot;Encara no ha començat&quot; &gt; progres.txt." loading="lazy"><figcaption>Creo el fitxer de progrés amb <code>echo "Encara no ha començat" &gt; progres.txt</code>.</figcaption></figure>
+        <figure><img src="img/proc-33.png" alt="Poso un monitor: watch -n 1 cat progres.txt repeteix l&#x27;ordre cada segon." loading="lazy"><figcaption>Poso un monitor: <code>watch -n 1 cat progres.txt</code> repeteix l'ordre cada segon.</figcaption></figure>
+        <figure><img src="img/proc-34.png" alt="El monitor mostra «Encara no ha començat»." loading="lazy"><figcaption>El monitor mostra «Encara no ha començat».</figcaption></figure>
+        <figure><img src="img/proc-35.png" alt="Engego ./descarrega.sh en primer pla i la paro amb Ctrl+Z: queda «Aturat»." loading="lazy"><figcaption>Engego <code>./descarrega.sh</code> en primer pla i la paro amb <code>Ctrl+Z</code>: queda «Aturat».</figcaption></figure>
+        <figure><img src="img/proc-36.png" alt="jobs -l mostra el treball aturat amb el seu PID (4460)." loading="lazy"><figcaption><code>jobs -l</code> mostra el treball aturat amb el seu PID (4460).</figcaption></figure>
+        <figure><img src="img/proc-37.png" alt="bg %1 el fa continuar en segon pla." loading="lazy"><figcaption><code>bg %1</code> el fa continuar en segon pla.</figcaption></figure>
+        <figure><img src="img/proc-38.png" alt="fg %1 el porta al primer pla; amb un altre Ctrl+Z el torno a aturar." loading="lazy"><figcaption><code>fg %1</code> el porta al primer pla; amb un altre <code>Ctrl+Z</code> el torno a aturar.</figcaption></figure>
+    <h4>Pas 5 · Prioritat a la descàrrega</h4>
+    <p>Per fer que la descàrrega acabi abans, li vaig pujar la prioritat amb <code>renice</code>. Els valors negatius només els pot posar root.</p>
+        <figure><img src="img/proc-39.png" alt="Obro top -p $(pgrep -d, &#x27;minador|descarrega&#x27;) per veure només els processos que m&#x27;interessen." loading="lazy"><figcaption>Obro <code>top -p $(pgrep -d, 'minador|descarrega')</code> per veure només els processos que m'interessen.</figcaption></figure>
+        <figure><img src="img/proc-40.png" alt="top mostra els dos minadors i la descàrrega (PID 6130) amb la prioritat per defecte." loading="lazy"><figcaption><code>top</code> mostra els dos minadors i la descàrrega (PID 6130) amb la prioritat per defecte.</figcaption></figure>
+        <figure><img src="img/proc-41.png" alt="Amb renice -n -10 -p 6130 li pujo la prioritat." loading="lazy"><figcaption>Amb <code>renice -n -10 -p 6130</code> li pujo la prioritat.</figcaption></figure>
+        <figure><img src="img/proc-42.png" alt="Torno a obrir el mateix top." loading="lazy"><figcaption>Torno a obrir el mateix <code>top</code>.</figcaption></figure>
+        <figure><img src="img/proc-43.png" alt="Ara descarrega.sh (6130) té NI -10 i PR 10: té més prioritat que els minadors." loading="lazy"><figcaption>Ara <code>descarrega.sh</code> (6130) té <code>NI -10</code> i <code>PR 10</code>: té més prioritat que els minadors.</figcaption></figure>
+    <h4>Pas 6 · Neutralitzar els intrusos</h4>
+    <p>Als minadors i a l'espia els vaig acabar amb <code>kill</code>; al backup, que és legítim, només el vaig posar en pausa.</p>
+        <figure><img src="img/proc-44.png" alt="pgrep -l minador em dona els PID dels dos minadors (3260 i 3261)." loading="lazy"><figcaption><code>pgrep -l minador</code> em dona els PID dels dos minadors (3260 i 3261).</figcaption></figure>
+        <figure><img src="img/proc-45.png" alt="Els acabo amb kill 3260 3261 (SIGTERM)." loading="lazy"><figcaption>Els acabo amb <code>kill 3260 3261</code> (SIGTERM).</figcaption></figure>
+        <figure><img src="img/proc-46.png" alt="pgrep -l minador ja no mostra res: han desaparegut." loading="lazy"><figcaption><code>pgrep -l minador</code> ja no mostra res: han desaparegut.</figcaption></figure>
+        <figure><img src="img/proc-47.png" alt="Busco l&#x27;espia amb pgrep -l espia: surten tres processos." loading="lazy"><figcaption>Busco l'espia amb <code>pgrep -l espia</code>: surten tres processos.</figcaption></figure>
+        <figure><img src="img/proc-48.png" alt="Li envio kill 3263." loading="lazy"><figcaption>Li envio <code>kill 3263</code>.</figcaption></figure>
+        <figure><img src="img/proc-49.png" alt="pgrep -l espia encara el mostra: no ha mort." loading="lazy"><figcaption><code>pgrep -l espia</code> encara el mostra: no ha mort.</figcaption></figure>
+        <figure><img src="img/proc-50.png" alt="Surt el missatge de l&#x27;espia, «SIGTERM? Ni parlar-ne!»: ignora el senyal." loading="lazy"><figcaption>Surt el missatge de l'espia, «SIGTERM? Ni parlar-ne!»: ignora el senyal.</figcaption></figure>
+        <figure><img src="img/proc-51.png" alt="Amb kill -9 3263 (SIGKILL) sí que el mato; pgrep -l espia ja no el mostra." loading="lazy"><figcaption>Amb <code>kill -9 3263</code> (SIGKILL) sí que el mato; <code>pgrep -l espia</code> ja no el mostra.</figcaption></figure>
+        <figure><img src="img/proc-52.png" alt="pgrep -l backup troba el backup; amb kill -STOP 3262 el poso en pausa i ps mostra l&#x27;estat T." loading="lazy"><figcaption><code>pgrep -l backup</code> troba el backup; amb <code>kill -STOP 3262</code> el poso en pausa i <code>ps</code> mostra l'estat <code>T</code>.</figcaption></figure>
+        <figure><img src="img/proc-53.png" alt="Amb kill -CONT 3262 el reprenc i l&#x27;estat torna a S." loading="lazy"><figcaption>Amb <code>kill -CONT 3262</code> el reprenc i l'estat torna a <code>S</code>.</figcaption></figure>
+    <h4>Pas 7 · Que la descàrrega no es perdi</h4>
+    <p>Vaig comprovar com fer que una descàrrega continuï encara que es tanqui el terminal, amb <code>nohup</code>.</p>
+        <figure><img src="img/proc-54.png" alt="Engego ./descarrega.sh &amp; en segon pla (treball [3])." loading="lazy"><figcaption>Engego <code>./descarrega.sh &amp;</code> en segon pla (treball [3]).</figcaption></figure>
+        <figure><img src="img/proc-55.png" alt="Ara l&#x27;engego amb nohup ./descarrega.sh &amp;: nohup desa la sortida a nohup.out i protegeix el procés si es tanca el terminal." loading="lazy"><figcaption>Ara l'engego amb <code>nohup ./descarrega.sh &amp;</code>: <code>nohup</code> desa la sortida a <code>nohup.out</code> i protegeix el procés si es tanca el terminal.</figcaption></figure>
+        <figure><img src="img/proc-56.png" alt="pstree -ps $(pgrep descarrega) mostra l&#x27;ajuda perquè la descàrrega ja havia acabat i no troba cap PID; a baix surt [4] Fet nohup ./descarrega.sh." loading="lazy"><figcaption><code>pstree -ps $(pgrep descarrega)</code> mostra l'ajuda perquè la descàrrega ja havia acabat i no troba cap PID; a baix surt <code>[4] Fet nohup ./descarrega.sh</code>.</figcaption></figure>
+        <figure><img src="img/proc-57.png" alt="Per netejar, pkill atura els processos de la missió ([1] Matat) i pgrep -l ja no en troba cap." loading="lazy"><figcaption>Per netejar, <code>pkill</code> atura els processos de la missió (<code>[1] Matat</code>) i <code>pgrep -l</code> ja no en troba cap.</figcaption></figure>
+    <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
+  </article>
+
+  <article class="apartat" id="apartat6">
+    <h2>6. Còpies de seguretat i automatització de tasques</h2>
+    <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
+  </article>
+
+  <article class="apartat" id="apartat7">
+    <h2>7. Gestió d’usuaris i grups i permisos</h2>
+    <h3 id="apartat7-1">7.1 Gestió d’usuaris i grups</h3>
+    <p>Missió «PixelForge», un estudi de videojocs: arriben treballadors nous, es formen equips, algú canvia de departament i una becària acaba les pràctiques. Tot ho he resolt creant, modificant, bloquejant i esborrant usuaris i grups. A tots els usuaris els he posat la mateixa contrasenya de la missió.</p>
+    <h4>Pas 0 · Conèixer el sistema</h4>
+    <p>Abans de tocar res vaig mirar com guarda Ubuntu els usuaris i els grups.</p>
+        <figure><img src="img/usr-01.png" alt="whoami em diu que sóc maryam." loading="lazy"><figcaption><code>whoami</code> em diu que sóc <code>maryam</code>.</figcaption></figure>
+        <figure><img src="img/usr-02.png" alt="id mostra el meu UID (1000) i els meus grups, entre ells sudo." loading="lazy"><figcaption><code>id</code> mostra el meu UID (1000) i els meus grups, entre ells <code>sudo</code>.</figcaption></figure>
+        <figure><img src="img/usr-03.png" alt="grep $USER /etc/passwd mostra la meva línia, amb els set camps." loading="lazy"><figcaption><code>grep $USER /etc/passwd</code> mostra la meva línia, amb els set camps.</figcaption></figure>
+        <figure><img src="img/usr-04.png" alt="tail -5 /etc/passwd mostra els últims usuaris, entre ells maryam i mysql, que és un usuari de servei." loading="lazy"><figcaption><code>tail -5 /etc/passwd</code> mostra els últims usuaris, entre ells <code>maryam</code> i <code>mysql</code>, que és un usuari de servei.</figcaption></figure>
+        <figure><img src="img/usr-05.png" alt="cat /etc/shadow em dona «Permission denied»: només root el pot llegir." loading="lazy"><figcaption><code>cat /etc/shadow</code> em dona «Permission denied»: només root el pot llegir.</figcaption></figure>
+        <figure><img src="img/usr-06.png" alt="Amb sudo grep $USER /etc/shadow sí que veig la meva contrasenya xifrada." loading="lazy"><figcaption>Amb <code>sudo grep $USER /etc/shadow</code> sí que veig la meva contrasenya xifrada.</figcaption></figure>
+        <figure><img src="img/usr-07.png" alt="getent group sudo mostra que maryam és al grup sudo." loading="lazy"><figcaption><code>getent group sudo</code> mostra que <code>maryam</code> és al grup <code>sudo</code>.</figcaption></figure>
+        <figure><img src="img/usr-08.png" alt="ls -a /etc/skel/ mostra els fitxers model que es copien a cada usuari nou." loading="lazy"><figcaption><code>ls -a /etc/skel/</code> mostra els fitxers model que es copien a cada usuari nou.</figcaption></figure>
+    <h4>Pas 1 · Crear usuaris</h4>
+    <p>Vaig crear els usuaris de tres maneres: amb <code>useradd</code>, amb <code>adduser</code> i des de l'entorn gràfic.</p>
+        <figure><img src="img/usr-09.png" alt="Creo la Núria amb sudo useradd nuria, sense cap opció." loading="lazy"><figcaption>Creo la Núria amb <code>sudo useradd nuria</code>, sense cap opció.</figcaption></figure>
+        <figure><img src="img/usr-10.png" alt="A /etc/passwd té el shell /bin/sh, no té nom complet i ls /home mostra que no s&#x27;ha creat la seva carpeta personal." loading="lazy"><figcaption>A <code>/etc/passwd</code> té el shell <code>/bin/sh</code>, no té nom complet i <code>ls /home</code> mostra que no s'ha creat la seva carpeta personal.</figcaption></figure>
+        <figure><img src="img/usr-11.png" alt="L&#x27;esborro amb sudo userdel nuria per fer-ho bé." loading="lazy"><figcaption>L'esborro amb <code>sudo userdel nuria</code> per fer-ho bé.</figcaption></figure>
+        <figure><img src="img/usr-12.png" alt="La torno a crear amb useradd -m -s /bin/bash -c &quot;Nuria Vidal&quot; nuria: -m crea la carpeta, -s el shell i -c el nom complet (a la captura el nom va quedar escrit «Nuria Vidat¡l»)." loading="lazy"><figcaption>La torno a crear amb <code>useradd -m -s /bin/bash -c "Nuria Vidal" nuria</code>: <code>-m</code> crea la carpeta, <code>-s</code> el shell i <code>-c</code> el nom complet (a la captura el nom va quedar escrit «Nuria Vidat¡l»).</figcaption></figure>
+        <figure><img src="img/usr-13.png" alt="Li poso contrasenya amb sudo passwd nuria; avisa que és curta però l&#x27;accepta." loading="lazy"><figcaption>Li poso contrasenya amb <code>sudo passwd nuria</code>; avisa que és curta però l'accepta.</figcaption></figure>
+        <figure><img src="img/usr-14.png" alt="Ara té /bin/bash i nom complet; la seva carpeta no la puc llegir amb el meu usuari (Permission denied)." loading="lazy"><figcaption>Ara té <code>/bin/bash</code> i nom complet; la seva carpeta no la puc llegir amb el meu usuari (<code>Permission denied</code>).</figcaption></figure>
+        <figure><img src="img/usr-15.png" alt="Creo en Pau amb sudo adduser pau, que va preguntant la contrasenya i el nom complet." loading="lazy"><figcaption>Creo en Pau amb <code>sudo adduser pau</code>, que va preguntant la contrasenya i el nom complet.</figcaption></figure>
+        <figure><img src="img/usr-16.png" alt="Creo en Marc amb useradd -m -s /bin/bash -c &quot;Marc Solar&quot; marc." loading="lazy"><figcaption>Creo en Marc amb <code>useradd -m -s /bin/bash -c "Marc Solar" marc</code>.</figcaption></figure>
+        <figure><img src="img/usr-17.png" alt="Li poso contrasenya amb sudo passwd marc." loading="lazy"><figcaption>Li poso contrasenya amb <code>sudo passwd marc</code>.</figcaption></figure>
+        <figure><img src="img/usr-18.png" alt="Per a la Laia faig servir l&#x27;entorn gràfic: Paràmetres › Sistema › Usuaris." loading="lazy"><figcaption>Per a la Laia faig servir l'entorn gràfic: Paràmetres › Sistema › Usuaris.</figcaption></figure>
+        <figure><img src="img/usr-19.png" alt="Es veuen els usuaris creats i el botó «Afegeix un usuari»." loading="lazy"><figcaption>Es veuen els usuaris creats i el botó «Afegeix un usuari».</figcaption></figure>
+        <figure><img src="img/usr-20.png" alt="Omplo el formulari: nom complet Laia Puig i nom d&#x27;usuari laia." loading="lazy"><figcaption>Omplo el formulari: nom complet <code>Laia Puig</code> i nom d'usuari <code>laia</code>.</figcaption></figure>
+        <figure><img src="img/usr-21.png" alt="Trio «Estableix una contrasenya ara» i escric la contrasenya dues vegades." loading="lazy"><figcaption>Trio «Estableix una contrasenya ara» i escric la contrasenya dues vegades.</figcaption></figure>
+        <figure><img src="img/usr-22.png" alt="grep laia /etc/passwd confirma que l&#x27;eina gràfica l&#x27;ha creat igual que les ordres." loading="lazy"><figcaption><code>grep laia /etc/passwd</code> confirma que l'eina gràfica l'ha creat igual que les ordres.</figcaption></figure>
+        <figure><img src="img/usr-23.png" alt="getent passwd nuria pau marc laia mostra els quatre comptes amb UID, carpeta i shell." loading="lazy"><figcaption><code>getent passwd nuria pau marc laia</code> mostra els quatre comptes amb UID, carpeta i shell.</figcaption></figure>
+    <h4>Pas 2 · Primer dia: iniciar sessió</h4>
+    <p>Vaig comprovar que els comptes funcionen entrant-hi, des del terminal i des de l'entorn gràfic.</p>
+        <figure><img src="img/usr-24.png" alt="Entro com a Núria amb su - nuria; whoami diu nuria i pwd és /home/nuria." loading="lazy"><figcaption>Entro com a Núria amb <code>su - nuria</code>; <code>whoami</code> diu <code>nuria</code> i <code>pwd</code> és <code>/home/nuria</code>.</figcaption></figure>
+        <figure><img src="img/usr-25.png" alt="Creo primer_dia.txt i ls -l mostra que és de l&#x27;usuari nuria i del grup nuria. Surto amb exit." loading="lazy"><figcaption>Creo <code>primer_dia.txt</code> i <code>ls -l</code> mostra que és de l'usuari <code>nuria</code> i del grup <code>nuria</code>. Surto amb <code>exit</code>.</figcaption></figure>
+        <figure><img src="img/usr-26.png" alt="Des de l&#x27;entorn gràfic, bloquejo la pantalla per canviar d&#x27;usuari." loading="lazy"><figcaption>Des de l'entorn gràfic, bloquejo la pantalla per canviar d'usuari.</figcaption></figure>
+        <figure><img src="img/usr-27.png" alt="Entro com a pau amb la seva contrasenya." loading="lazy"><figcaption>Entro com a <code>pau</code> amb la seva contrasenya.</figcaption></figure>
+        <figure><img src="img/usr-28.png" alt="whoami diu pau i ls mostra les carpetes que Ubuntu li ha creat." loading="lazy"><figcaption><code>whoami</code> diu <code>pau</code> i <code>ls</code> mostra les carpetes que Ubuntu li ha creat.</figcaption></figure>
+    <h4>Pas 3 · Crear i esborrar grups</h4>
+    <p>Cada departament de l'estudi és un grup. El grup dels programadors me'l vaig escriure sense la «a» (<code>progrmadors</code>) i així surt a les captures següents.</p>
+        <figure><img src="img/usr-29.png" alt="Creo el grup dels programadors amb groupadd." loading="lazy"><figcaption>Creo el grup dels programadors amb <code>groupadd</code>.</figcaption></figure>
+        <figure><img src="img/usr-30.png" alt="Creo artistes amb addgroup." loading="lazy"><figcaption>Creo <code>artistes</code> amb <code>addgroup</code>.</figcaption></figure>
+        <figure><img src="img/usr-31.png" alt="Creo testers i becaris amb groupadd." loading="lazy"><figcaption>Creo <code>testers</code> i <code>becaris</code> amb <code>groupadd</code>.</figcaption></figure>
+        <figure><img src="img/usr-32.png" alt="Creo expressament un grup amb el nom mal escrit, progamadors." loading="lazy"><figcaption>Creo expressament un grup amb el nom mal escrit, <code>progamadors</code>.</figcaption></figure>
+        <figure><img src="img/usr-33.png" alt="tail -5 /etc/group mostra els grups nous, també progamadors." loading="lazy"><figcaption><code>tail -5 /etc/group</code> mostra els grups nous, també <code>progamadors</code>.</figcaption></figure>
+        <figure><img src="img/usr-34.png" alt="L&#x27;esborro amb sudo groupdel progamadors i getent group ja no el troba." loading="lazy"><figcaption>L'esborro amb <code>sudo groupdel progamadors</code> i <code>getent group</code> ja no el troba.</figcaption></figure>
+    <h4>Pas 4 · Afegir i treure usuaris dels grups</h4>
+    <p>Vaig posar cada treballador al seu grup amb ordres diferents, i vaig provar l'error típic de <code>-G</code> sense la <code>a</code>.</p>
+        <figure><img src="img/usr-35.png" alt="Afegeixo la Núria als programadors amb usermod -aG." loading="lazy"><figcaption>Afegeixo la Núria als programadors amb <code>usermod -aG</code>.</figcaption></figure>
+        <figure><img src="img/usr-36.png" alt="groups nuria mostra nuria progrmadors." loading="lazy"><figcaption><code>groups nuria</code> mostra <code>nuria progrmadors</code>.</figcaption></figure>
+        <figure><img src="img/usr-37.png" alt="Afegeixo en Pau als artistes amb gpasswd -a." loading="lazy"><figcaption>Afegeixo en Pau als artistes amb <code>gpasswd -a</code>.</figcaption></figure>
+        <figure><img src="img/usr-38.png" alt="Afegeixo en Marc als testers i la Laia als becaris amb adduser." loading="lazy"><figcaption>Afegeixo en Marc als testers i la Laia als becaris amb <code>adduser</code>.</figcaption></figure>
+        <figure><img src="img/usr-39.png" alt="Afegeixo la Laia als artistes amb gpasswd -a." loading="lazy"><figcaption>Afegeixo la Laia als artistes amb <code>gpasswd -a</code>.</figcaption></figure>
+        <figure><img src="img/usr-40.png" alt="L&#x27;error: amb usermod -G testers nuria (sense a) la Núria queda només a testers i perd progrmadors." loading="lazy"><figcaption>L'error: amb <code>usermod -G testers nuria</code> (sense <code>a</code>) la Núria queda només a <code>testers</code> i perd <code>progrmadors</code>.</figcaption></figure>
+        <figure><img src="img/usr-41.png" alt="Ho arreglo amb usermod -aG progrmadors nuria: ara és a progrmadors i testers." loading="lazy"><figcaption>Ho arreglo amb <code>usermod -aG progrmadors nuria</code>: ara és a <code>progrmadors</code> i <code>testers</code>.</figcaption></figure>
+        <figure><img src="img/usr-42.png" alt="Trec la Laia dels artistes amb gpasswd -d." loading="lazy"><figcaption>Trec la Laia dels artistes amb <code>gpasswd -d</code>.</figcaption></figure>
+        <figure><img src="img/usr-43.png" alt="getent group mostra els membres dels quatre grups." loading="lazy"><figcaption><code>getent group</code> mostra els membres dels quatre grups.</figcaption></figure>
+    <h4>Pas 5 · Canviar el grup principal</h4>
+    <p>El grup principal decideix de quin grup són els fitxers nous. Els que ja existien no canvien.</p>
+        <figure><img src="img/usr-44.png" alt="id pau mostra que el seu grup principal és pau." loading="lazy"><figcaption><code>id pau</code> mostra que el seu grup principal és <code>pau</code>.</figcaption></figure>
+        <figure><img src="img/usr-45.png" alt="Entro com a pau amb su - pau." loading="lazy"><figcaption>Entro com a pau amb <code>su - pau</code>.</figcaption></figure>
+        <figure><img src="img/usr-46.png" alt="Creo dibuix_abans.png." loading="lazy"><figcaption>Creo <code>dibuix_abans.png</code>.</figcaption></figure>
+        <figure><img src="img/usr-47.png" alt="ls -l mostra que és del grup pau." loading="lazy"><figcaption><code>ls -l</code> mostra que és del grup <code>pau</code>.</figcaption></figure>
+        <figure><img src="img/usr-48.png" alt="Surto amb exit." loading="lazy"><figcaption>Surto amb <code>exit</code>.</figcaption></figure>
+        <figure><img src="img/usr-49.png" alt="Canvio el grup principal amb usermod -g progrmadors pau." loading="lazy"><figcaption>Canvio el grup principal amb <code>usermod -g progrmadors pau</code>.</figcaption></figure>
+        <figure><img src="img/usr-50.png" alt="id pau ja mostra gid=1009(progrmadors)." loading="lazy"><figcaption><code>id pau</code> ja mostra <code>gid=1009(progrmadors)</code>.</figcaption></figure>
+        <figure><img src="img/usr-51.png" alt="Entro com a Pau i creo codi_despres.py: surt del grup progrmadors, i el fitxer anterior continua del grup pau." loading="lazy"><figcaption>Entro com a Pau i creo <code>codi_despres.py</code>: surt del grup <code>progrmadors</code>, i el fitxer anterior continua del grup <code>pau</code>.</figcaption></figure>
+    <h4>Pas 6 · Bloquejar i desbloquejar un compte</h4>
+    <p>Vaig bloquejar el compte d'en Marc, vaig comprovar que no podia entrar i el vaig desbloquejar.</p>
+        <figure><img src="img/usr-52.png" alt="passwd -S marc mostra l&#x27;estat P (contrasenya vàlida)." loading="lazy"><figcaption><code>passwd -S marc</code> mostra l'estat <code>P</code> (contrasenya vàlida).</figcaption></figure>
+        <figure><img src="img/usr-53.png" alt="El bloquejo amb passwd -l marc i l&#x27;estat passa a L." loading="lazy"><figcaption>El bloquejo amb <code>passwd -l marc</code> i l'estat passa a <code>L</code>.</figcaption></figure>
+        <figure><img src="img/usr-54.png" alt="A /etc/shadow hi ha un ! davant del hash de Marc: això és el bloqueig." loading="lazy"><figcaption>A <code>/etc/shadow</code> hi ha un <code>!</code> davant del hash de Marc: això és el bloqueig.</figcaption></figure>
+        <figure><img src="img/usr-55.png" alt="Si provo su - marc, dona «Error d&#x27;autenticació»." loading="lazy"><figcaption>Si provo <code>su - marc</code>, dona «Error d'autenticació».</figcaption></figure>
+        <figure><img src="img/usr-56.png" alt="El desbloquejo amb passwd -u marc i torna a P." loading="lazy"><figcaption>El desbloquejo amb <code>passwd -u marc</code> i torna a <code>P</code>.</figcaption></figure>
+        <figure><img src="img/usr-57.png" alt="Ara su - marc funciona i whoami diu marc." loading="lazy"><figcaption>Ara <code>su - marc</code> funciona i <code>whoami</code> diu <code>marc</code>.</figcaption></figure>
+    <h4>Pas 7 · Canviar el nom d&#x27;un usuari</h4>
+    <p>La Núria passa a dir-se <code>nvidal</code>: cal canviar el nom d'usuari, el del seu grup personal i la carpeta.</p>
+        <figure><img src="img/usr-58.png" alt="Canvio el nom amb usermod -l nvidal nuria; encara surt la carpeta /home/nuria. Amb groupmod -n canvio el nom del grup personal i amb usermod -d /home/nvidal -m la carpeta; id i ls -l /home ho confirmen." loading="lazy"><figcaption>Canvio el nom amb <code>usermod -l nvidal nuria</code>; encara surt la carpeta <code>/home/nuria</code>. Amb <code>groupmod -n</code> canvio el nom del grup personal i amb <code>usermod -d /home/nvidal -m</code> la carpeta; <code>id</code> i <code>ls -l /home</code> ho confirmen.</figcaption></figure>
+        <figure><img src="img/usr-59.png" alt="su - nvidal funciona i whoami diu nvidal." loading="lazy"><figcaption><code>su - nvidal</code> funciona i <code>whoami</code> diu <code>nvidal</code>.</figcaption></figure>
+    <h4>Pas 8 · Esborrar un usuari i un grup</h4>
+    <p>La Laia acaba les pràctiques: n'esborro el compte, la carpeta que queda i el grup dels becaris.</p>
+        <figure><img src="img/usr-60.png" alt="ls -l /home mostra la carpeta de la Laia, que és seva." loading="lazy"><figcaption><code>ls -l /home</code> mostra la carpeta de la Laia, que és seva.</figcaption></figure>
+        <figure><img src="img/usr-61.png" alt="Esborro l&#x27;usuari sense -r amb sudo userdel laia." loading="lazy"><figcaption>Esborro l'usuari sense <code>-r</code> amb <code>sudo userdel laia</code>.</figcaption></figure>
+        <figure><img src="img/usr-62.png" alt="Ara el propietari de /home/laia surt com un número (1008): l&#x27;usuari ja no existeix." loading="lazy"><figcaption>Ara el propietari de <code>/home/laia</code> surt com un número (1008): l'usuari ja no existeix.</figcaption></figure>
+        <figure><img src="img/usr-63.png" alt="Esborro la carpeta orfe amb sudo rm -r /home/laia." loading="lazy"><figcaption>Esborro la carpeta orfe amb <code>sudo rm -r /home/laia</code>.</figcaption></figure>
+        <figure><img src="img/usr-64.png" alt="Esborro el grup becaris amb sudo delgroup becaris." loading="lazy"><figcaption>Esborro el grup <code>becaris</code> amb <code>sudo delgroup becaris</code>.</figcaption></figure>
+        <figure><img src="img/usr-65.png" alt="getent group becaris no mostra res." loading="lazy"><figcaption><code>getent group becaris</code> no mostra res.</figcaption></figure>
+        <figure><img src="img/usr-66.png" alt="getent passwd nvidal pau marc mostra els tres usuaris que queden." loading="lazy"><figcaption><code>getent passwd nvidal pau marc</code> mostra els tres usuaris que queden.</figcaption></figure>
+        <figure><img src="img/usr-67.png" alt="getent group mostra els grups progrmadors, artistes i testers amb els seus membres." loading="lazy"><figcaption><code>getent group</code> mostra els grups <code>progrmadors</code>, <code>artistes</code> i <code>testers</code> amb els seus membres.</figcaption></figure>
+    <h3 id="apartat7-2">7.2 Permisos</h3>
+    <p>Continuació de PixelForge: tothom podia llegir i esborrar els fitxers de tothom, i el codi del joc era obert a tot l'estudi. He posat ordre amb els permisos: cada equip té la seva carpeta, els fitxers nous són del grup correcte, hi ha una carpeta compartida protegida i un accés puntual per a una persona de fora de l'equip.</p>
+    <h4>Pas 0 · Muntar l&#x27;estudi</h4>
+    <p>Vaig crear les carpetes de treball de PixelForge a <code>/srv/pixelforge</code>.</p>
+        <figure><img src="img/perm-01.png" alt="Creo la carpeta de l&#x27;estudi /srv/pixelforge." loading="lazy"><figcaption>Creo la carpeta de l'estudi <code>/srv/pixelforge</code>.</figcaption></figure>
+        <figure><img src="img/perm-02.png" alt="Hi entro, creo codi, art, proves i compartit, i amb ls les veig." loading="lazy"><figcaption>Hi entro, creo <code>codi</code>, <code>art</code>, <code>proves</code> i <code>compartit</code>, i amb <code>ls</code> les veig.</figcaption></figure>
+        <figure><img src="img/perm-03.png" alt="Creo un fitxer a cada carpeta d&#x27;equip amb touch." loading="lazy"><figcaption>Creo un fitxer a cada carpeta d'equip amb <code>touch</code>.</figcaption></figure>
+        <figure><img src="img/perm-04.png" alt="ls -l mostra que tot és de root, amb permisos drwxr-xr-x." loading="lazy"><figcaption><code>ls -l</code> mostra que tot és de <code>root</code>, amb permisos <code>drwxr-xr-x</code>.</figcaption></figure>
+    <h4>Pas 1 · Llegir els permisos</h4>
+    <p>Abans de canviar res, vaig aprendre a llegir la sortida de <code>ls -l</code>.</p>
+        <figure><img src="img/perm-05.png" alt="ls -l joc.py mostra -rw-r--r--: el propietari pot llegir i escriure i la resta només llegir." loading="lazy"><figcaption><code>ls -l joc.py</code> mostra <code>-rw-r--r--</code>: el propietari pot llegir i escriure i la resta només llegir.</figcaption></figure>
+        <figure><img src="img/perm-06.png" alt="ls -ld mostra els permisos de la carpeta mateixa: drwxr-xr-x, amb la d de directori." loading="lazy"><figcaption><code>ls -ld</code> mostra els permisos de la carpeta mateixa: <code>drwxr-xr-x</code>, amb la <code>d</code> de directori.</figcaption></figure>
+        <figure><img src="img/perm-07.png" alt="stat ho mostra en lletres i en número: 0644/-rw-r--r--." loading="lazy"><figcaption><code>stat</code> ho mostra en lletres i en número: <code>0644/-rw-r--r--</code>.</figcaption></figure>
+    <h4>Pas 2 · chmod amb números</h4>
+    <p>Cada permís val un número (r=4, w=2, x=1) i se sumen. <code>750</code> vol dir propietari <code>rwx</code>, grup <code>r-x</code> i la resta res.</p>
+        <figure><img src="img/perm-08.png" alt="chmod -R 750 a la carpeta codi." loading="lazy"><figcaption><code>chmod -R 750</code> a la carpeta <code>codi</code>.</figcaption></figure>
+        <figure><img src="img/perm-09.png" alt="ls -ld mostra drwxr-x---." loading="lazy"><figcaption><code>ls -ld</code> mostra <code>drwxr-x---</code>.</figcaption></figure>
+        <figure><img src="img/perm-10.png" alt="El fitxer de dins també ha canviat a -rwxr-x---, per l&#x27;opció -R." loading="lazy"><figcaption>El fitxer de dins també ha canviat a <code>-rwxr-x---</code>, per l'opció <code>-R</code>.</figcaption></figure>
+        <figure><img src="img/perm-11.png" alt="A art li poso 755." loading="lazy"><figcaption>A <code>art</code> li poso <code>755</code>.</figcaption></figure>
+        <figure><img src="img/perm-12.png" alt="A informe.txt li poso 640." loading="lazy"><figcaption>A <code>informe.txt</code> li poso <code>640</code>.</figcaption></figure>
+        <figure><img src="img/perm-13.png" alt="ls -l mostra -rw-r-----." loading="lazy"><figcaption><code>ls -l</code> mostra <code>-rw-r-----</code>.</figcaption></figure>
+    <h4>Pas 3 · chmod amb lletres</h4>
+    <p>Amb lletres puc afegir (<code>+</code>), treure (<code>-</code>) o fixar (<code>=</code>) un permís sense recalcular el número.</p>
+        <figure><img src="img/perm-14.png" alt="chmod u-w treu l&#x27;escriptura al propietari d&#x27;art: dr-xr-xr-x." loading="lazy"><figcaption><code>chmod u-w</code> treu l'escriptura al propietari d'<code>art</code>: <code>dr-xr-xr-x</code>.</figcaption></figure>
+        <figure><img src="img/perm-15.png" alt="chmod u+w la hi torna: drwxr-xr-x." loading="lazy"><figcaption><code>chmod u+w</code> la hi torna: <code>drwxr-xr-x</code>.</figcaption></figure>
+        <figure><img src="img/perm-16.png" alt="chmod g+rx,o-w combina dos canvis en una sola ordre." loading="lazy"><figcaption><code>chmod g+rx,o-w</code> combina dos canvis en una sola ordre.</figcaption></figure>
+    <h4>Pas 4 · chown i chgrp: donar les carpetes als equips</h4>
+    <p>Les carpetes eren de root. Les vaig assignar als equips amb <code>chown</code> (propietari i grup) i <code>chgrp</code> (només el grup).</p>
+        <figure><img src="img/perm-17.png" alt="chown -R pau:programadors dona codi a en Pau i al grup dels programadors (al meu sistema, progrmadors)." loading="lazy"><figcaption><code>chown -R pau:programadors</code> dona <code>codi</code> a en Pau i al grup dels programadors (al meu sistema, <code>progrmadors</code>).</figcaption></figure>
+        <figure><img src="img/perm-18.png" alt="ls -l mostra codi amb propietari pau i grup progrmadors." loading="lazy"><figcaption><code>ls -l</code> mostra <code>codi</code> amb propietari <code>pau</code> i grup <code>progrmadors</code>.</figcaption></figure>
+        <figure><img src="img/perm-19.png" alt="chgrp -R testers canvia només el grup de proves." loading="lazy"><figcaption><code>chgrp -R testers</code> canvia només el grup de <code>proves</code>.</figcaption></figure>
+        <figure><img src="img/perm-20.png" alt="Entro com a pau amb su - pau." loading="lazy"><figcaption>Entro com a pau amb <code>su - pau</code>.</figcaption></figure>
+        <figure><img src="img/perm-21.png" alt="A codi puc crear nivell1.py amb touch." loading="lazy"><figcaption>A <code>codi</code> puc crear <code>nivell1.py</code> amb <code>touch</code>.</figcaption></figure>
+        <figure><img src="img/perm-22.png" alt="ls -ld proves mostra que el grup és testers." loading="lazy"><figcaption><code>ls -ld proves</code> mostra que el grup és <code>testers</code>.</figcaption></figure>
+        <figure><img src="img/perm-23.png" alt="Si en Pau intenta crear intrus.txt a proves, rep «Permission denied»." loading="lazy"><figcaption>Si en Pau intenta crear <code>intrus.txt</code> a <code>proves</code>, rep «Permission denied».</figcaption></figure>
+    <h4>Pas 5 · SGID: que els fitxers nous siguin de l&#x27;equip</h4>
+    <p>Sense SGID, un fitxer nou surt amb el grup personal de qui el crea. Amb <code>g+s</code> a la carpeta, hereta el grup de la carpeta.</p>
+        <figure><img src="img/perm-24.png" alt="Dono escriptura al grup de codi amb g+w: ara és drwxrwx---." loading="lazy"><figcaption>Dono escriptura al grup de <code>codi</code> amb <code>g+w</code>: ara és <code>drwxrwx---</code>.</figcaption></figure>
+        <figure><img src="img/perm-25.png" alt="Entro com a nvidal." loading="lazy"><figcaption>Entro com a nvidal.</figcaption></figure>
+        <figure><img src="img/perm-26.png" alt="Creo mapa.py a codi." loading="lazy"><figcaption>Creo <code>mapa.py</code> a <code>codi</code>.</figcaption></figure>
+        <figure><img src="img/perm-27.png" alt="ls -l mostra que el grup és nvidal, no progrmadors." loading="lazy"><figcaption><code>ls -l</code> mostra que el grup és <code>nvidal</code>, no <code>progrmadors</code>.</figcaption></figure>
+        <figure><img src="img/perm-28.png" alt="Activo SGID amb chmod g+s: drwxrws--- (la s al lloc de la x del grup)." loading="lazy"><figcaption>Activo SGID amb <code>chmod g+s</code>: <code>drwxrws---</code> (la <code>s</code> al lloc de la <code>x</code> del grup).</figcaption></figure>
+        <figure><img src="img/perm-29.png" alt="Torno a entrar com a nvidal." loading="lazy"><figcaption>Torno a entrar com a nvidal.</figcaption></figure>
+        <figure><img src="img/perm-30.png" alt="Creo so.py: ara surt amb el grup progrmadors, mentre mapa.py continua amb nvidal." loading="lazy"><figcaption>Creo <code>so.py</code>: ara surt amb el grup <code>progrmadors</code>, mentre <code>mapa.py</code> continua amb <code>nvidal</code>.</figcaption></figure>
+    <h4>Pas 6 · Sticky bit: la carpeta compartida</h4>
+    <p>A <code>compartit</code> tothom pot escriure, però amb el sticky bit ningú pot esborrar els fitxers dels altres.</p>
+        <figure><img src="img/perm-31.png" alt="Dono 777 a compartit perquè tothom hi pugui escriure." loading="lazy"><figcaption>Dono <code>777</code> a <code>compartit</code> perquè tothom hi pugui escriure.</figcaption></figure>
+        <figure><img src="img/perm-32.png" alt="Entro com a pau i hi creo de_pau.txt." loading="lazy"><figcaption>Entro com a pau i hi creo <code>de_pau.txt</code>.</figcaption></figure>
+        <figure><img src="img/perm-33.png" alt="En Marc esborra el fitxer d&#x27;en Pau (rm, responc y) i ho aconsegueix: sense sticky bit, qualsevol hi pot esborrar." loading="lazy"><figcaption>En Marc esborra el fitxer d'en Pau (<code>rm</code>, responc <code>y</code>) i ho aconsegueix: sense sticky bit, qualsevol hi pot esborrar.</figcaption></figure>
+        <figure><img src="img/perm-34.png" alt="Activo el sticky bit amb chmod +t: drwxrwxrwt." loading="lazy"><figcaption>Activo el sticky bit amb <code>chmod +t</code>: <code>drwxrwxrwt</code>.</figcaption></figure>
+        <figure><img src="img/perm-35.png" alt="Torno a entrar com a pau i creo de_pau.txt." loading="lazy"><figcaption>Torno a entrar com a pau i creo <code>de_pau.txt</code>.</figcaption></figure>
+        <figure><img src="img/perm-36.png" alt="Ara en Marc no el pot esborrar: «L&#x27;operació no és permesa»." loading="lazy"><figcaption>Ara en Marc no el pot esborrar: «L'operació no és permesa».</figcaption></figure>
+    <h4>Pas 7 · ACL: accés puntual per a una persona</h4>
+    <p>En Marc no és dels programadors, però necessita mirar <code>codi</code>. Amb una ACL li dono accés només a ell.</p>
+        <figure><img src="img/perm-37.png" alt="En Marc no pot llegir codi: «Permission denied»." loading="lazy"><figcaption>En Marc no pot llegir <code>codi</code>: «Permission denied».</figcaption></figure>
+        <figure><img src="img/perm-38.png" alt="Li dono accés només a ell amb setfacl -m u:marc:rx." loading="lazy"><figcaption>Li dono accés només a ell amb <code>setfacl -m u:marc:rx</code>.</figcaption></figure>
+        <figure><img src="img/perm-39.png" alt="ls -ld mostra un + al final dels permisos: té ACL." loading="lazy"><figcaption><code>ls -ld</code> mostra un <code>+</code> al final dels permisos: té ACL.</figcaption></figure>
+        <figure><img src="img/perm-40.png" alt="getfacl mostra l&#x27;entrada user:marc:r-x." loading="lazy"><figcaption><code>getfacl</code> mostra l'entrada <code>user:marc:r-x</code>.</figcaption></figure>
+        <figure><img src="img/perm-41.png" alt="Ara en Marc sí que pot fer ls a codi." loading="lazy"><figcaption>Ara en Marc sí que pot fer <code>ls</code> a <code>codi</code>.</figcaption></figure>
+        <figure><img src="img/perm-42.png" alt="Li trec l&#x27;accés amb setfacl -x u:marc." loading="lazy"><figcaption>Li trec l'accés amb <code>setfacl -x u:marc</code>.</figcaption></figure>
+        <figure><img src="img/perm-43.png" alt="getfacl ja no mostra user:marc." loading="lazy"><figcaption><code>getfacl</code> ja no mostra <code>user:marc</code>.</figcaption></figure>
+    <h4>Pas 8 · umask i SUID</h4>
+    <p>La <code>umask</code> diu quins permisos es treuen als fitxers nous. El SUID fa que un programa s'executi amb la identitat del seu propietari.</p>
+        <figure><img src="img/perm-44.png" alt="umask mostra 0002." loading="lazy"><figcaption><code>umask</code> mostra <code>0002</code>.</figcaption></figure>
+        <figure><img src="img/perm-45.png" alt="Creo un fitxer amb touch." loading="lazy"><figcaption>Creo un fitxer amb <code>touch</code>.</figcaption></figure>
+        <figure><img src="img/perm-46.png" alt="Creo una carpeta amb mkdir." loading="lazy"><figcaption>Creo una carpeta amb <code>mkdir</code>.</figcaption></figure>
+        <figure><img src="img/perm-47.png" alt="ls -ld: el fitxer és rw-rw-r-- i la carpeta rwxrwxr-x." loading="lazy"><figcaption><code>ls -ld</code>: el fitxer és <code>rw-rw-r--</code> i la carpeta <code>rwxrwxr-x</code>.</figcaption></figure>
+        <figure><img src="img/perm-48.png" alt="Canvio la màscara amb umask 027." loading="lazy"><figcaption>Canvio la màscara amb <code>umask 027</code>.</figcaption></figure>
+        <figure><img src="img/perm-49.png" alt="Amb 027, el fitxer nou queda rw-r----- i la carpeta rwxr-x---." loading="lazy"><figcaption>Amb <code>027</code>, el fitxer nou queda <code>rw-r-----</code> i la carpeta <code>rwxr-x---</code>.</figcaption></figure>
+        <figure><img src="img/perm-50.png" alt="ls -l /usr/bin/passwd mostra la s del bit SUID: -rwsr-xr-x." loading="lazy"><figcaption><code>ls -l /usr/bin/passwd</code> mostra la <code>s</code> del bit SUID: <code>-rwsr-xr-x</code>.</figcaption></figure>
+        <figure><img src="img/perm-51.png" alt="find /usr/bin -perm -4000 llista els programes amb SUID, com su, mount o passwd." loading="lazy"><figcaption><code>find /usr/bin -perm -4000</code> llista els programes amb SUID, com <code>su</code>, <code>mount</code> o <code>passwd</code>.</figcaption></figure>
+    <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
+  </article>
+
+  <article class="apartat" id="apartat8">
+    <h2>8. Quotes de disc</h2>
+    <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
+  </article>
   </section>
 </main>
 
@@ -133,7 +490,7 @@
     </a>
     <span>Contingut sota llicència <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ca" target="_blank" rel="license noopener">CC BY-NC-SA 4.0</a></span>
   </p>
-  <p class="autoria">Autor/a: <strong>Nom Cognom1 Cognom2</strong> · Pràctica 0 · Sistemes Operatius (ISOPJ1)</p>
+  <p class="autoria">Autor/a: <strong>EL_TEU_NOM</strong> · Sprint 2 · Sistemes Operatius (ISOPJ1)</p>
 </footer>
 
 </body>

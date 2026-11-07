@@ -1,0 +1,11 @@
+/* ubuntu/sprint2/css/estils.css
+   Només el color dels títols dels apartats 1 a 8. Color: #0033ee
+   L'índex no es toca: queda amb els colors normals del web. */
+
+.apartat h2 {
+  color: #0033ee;
+
+}
+.apartat h3 {
+  color: #009fb8;
+}
